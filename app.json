@@ -31,6 +31,12 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "08e3b4b5-a6a5-418f-8ed2-2954a06fa719"
+      }
+    },
+    "owner": "andrinoff"
   }
 }
