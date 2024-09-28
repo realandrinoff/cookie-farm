@@ -1,10 +1,11 @@
 import { View, Text} from "react-native"
 import { styles } from "../../assets/Styles";
 
-export default function settingsScreen(){
+export default function shopScreen(){
     return (
         <View style = {styles.bodyContainer}>
-        <Text style={styles.tabName}> Settings </Text>
+        <Text style={styles.tabName}> Shop Screen </Text>
+        
         </View>
     );
 }

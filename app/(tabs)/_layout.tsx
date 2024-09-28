@@ -1,44 +1,93 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
+import { useColorScheme } from 'react-native';
+import { Image } from "react-native"
+import { styles } from '../../assets/Styles';
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
+        tabBarStyle: styles.tabBar,
+
       }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
+          title: '',
+          tabBarLabelStyle: styles.tabBarText,
+          tabBarIcon: ({ focused, color, size }) => {
+            return (
+              <Image
+                source={focused ? require('../../assets/images/home-active.png') : require('../../assets/images/home-inactive.png')}
+                style={styles.tabBarIcon}
+              />
+            );
+          }
+          
         }}
       />
-      {/* <Tabs.Screen
-        name="account"
+      <Tabs.Screen
+        name="cacaobeansfarm"
         options={{
-          title: 'Accounts',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'link' : 'link'} color={color} />
-          ),
-        }} */}
+          title: '',
+          tabBarLabelStyle: styles.tabBarText,
+          tabBarIcon: ({ focused, color, size }) => {
+            return (
+              <Image
+                source={focused ? require('../../assets/images/cacaobeans-active.png') : require('../../assets/images/cacaobeans-inactive.png')}
+                style={styles.tabBarIcon}
+              />
+            );
+          }
+        }}
+      />
+      <Tabs.Screen
+        name="shop"
+        options={{
+          title: '',
+          tabBarLabelStyle: styles.tabBarText,
+          tabBarIcon: ({ focused, color, size }) => {
+            return (
+              <Image
+                source={focused ? require('../../assets/images/shop-active.png') : require('../../assets/images/shop-inactive.png')}
+                style={styles.tabBarIcon}
+              />
+            );
+          }
+        }}
+      />
+      <Tabs.Screen
+        name="bakery"
+        options={{
+          title: '',
+          tabBarLabelStyle: styles.tabBarText,
+          tabBarIcon: ({ focused, color, size }) => {
+            return (
+              <Image
+              source={focused ? require('../../assets/images/bakery-active.png') : require('../../assets/images/bakery-inactive.png')}
+                style={styles.tabBarIcon}
+              />
+            );
+          }
+        }}
+      />
       
        <Tabs.Screen
         name="settings"
         options={{
-          title: 'Settings',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'settings' : 'settings'} color={color} />
-          ),
+          title: '',
+          tabBarLabelStyle: styles.tabBarText,
+          tabBarIcon: ({ focused, color, size }) => {
+            return (
+              <Image
+                source={focused ? require('../../assets/images/settings-active.png') : require('../../assets/images/settings-inactive.png')}  
+                style={styles.tabBarIcon}
+              />
+            );
+          }
         }}
       />
     </Tabs>
