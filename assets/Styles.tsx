@@ -9,10 +9,8 @@ export const styles = StyleSheet.create({
   tabName: {
     fontStyle: "normal",
     fontFamily: "papyrus",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: 70,
+    textAlign: "center",
+    fontSize: 50,
     padding: 10,
     marginTop: 30,
     borderRadius: 10,
@@ -98,7 +96,7 @@ export const styles = StyleSheet.create({
 
     textAlign: "center",
     fontFamily: "papyrus",
-    fontSize: 50,
+    fontSize: 40,
     color: "#121212",
     marginTop: 300,
     display: "flex",
@@ -110,7 +108,7 @@ export const styles = StyleSheet.create({
     overflow: "hidden",
     justifyContent: "center",
     textAlign: "center",
-    fontSize: 50,
+    fontSize: 40,
     fontFamily: "papyrus",
     borderRadius: 30,
     textAlignVertical: "center",
@@ -122,7 +120,7 @@ export const styles = StyleSheet.create({
     display: "flex",
     justifyContent: "center",
     textAlign: "center",
-    fontSize: 50,
+    fontSize: 40,
     fontFamily: "papyrus",
     color: "#121212",
     borderRadius: 30,
@@ -132,21 +130,58 @@ export const styles = StyleSheet.create({
   cookieSelector: {
     alignItems: "center",
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
+    justifyContent: "space-around",
     
   },
   cookieTypeBOTH: {
+    textAlign: "center",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
     fontSize: 30,
     fontFamily: "papyrus",
     
   },
-  cookieTypeSelected: {
+  cookieTypeSelected : {
     overflow: "hidden",
     borderColor: "orange",
     borderWidth: 5,
-    borderRadius: 30,
+    height: 50,
+    borderRadius: 20,
   },
   cookieTypeNotSelected: {
     borderWidth: 0
+  },
+  cacaoContainer: {
+    display: "flex",
+    flexDirection: "row",
+    marginTop: 20,
+    marginLeft: "75%",
+    borderRadius: 100,
+    width: "25%",
+    height: 50,
+    // backgroundColor: "#FF6347",
+    color: "#ffffff",
+    fontSize: 100,
+    padding: 5,
+    // left: "54%",
+    backgroundColor: "#137989",
+    textAlign: "center",
+    textAlignVertical: "center"
+
+  } ,
+  cacaoCounterText: {
+    fontFamily: "papyrus",
+    position: "relative",
+    fontSize: 50,
+    textAlign: "center",
+    textAlignVertical: "center",
+  },
+  cacaoCounterImage: {
+    position: "relative",
+    alignSelf: "center",
+    height: 45,
+    width: 45,
   },
 });

@@ -10,6 +10,7 @@ import { BakingTimer } from "../../gameFiles/bakingElements";
 import { CookieOptions } from "../../gameFiles/options";
 
 
+
 export default function bakeryScreen() {
   const [isChocChip, setIsChocChip] = useState(false);
   const [isRegular, setIsRegular] = useState(true);
@@ -18,7 +19,9 @@ export default function bakeryScreen() {
   var [hideOptions, setHideOptions] = useState(false);
   return (
     <>
+
       <View style={styles.bodyContainer}>
+        
         <Text style={styles.tabName}>Bakery Screen</Text>
         <View>
         <CookieOptions hideOptions={hideOptions} isChocChip={isChocChip} isRegular={isRegular} setIsChocChip={setIsChocChip} setIsRegular={setIsRegular}/>
