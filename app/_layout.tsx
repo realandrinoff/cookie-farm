@@ -18,10 +18,10 @@ import {
 } from "react-native";
 import { ThemeProvider } from "styled-components";
 import TabLayout from "./(tabs)/_layout";
-import { getCookies } from "./dataManagement";
+import { getCookies } from "../dataManagement/cookieData";
 import { styles } from "../assets/Styles";
 import { CookieContext, CookieDispatchContext } from "./cookieContext";
-import { cookieReducer } from "./dataManagement";
+import { cookieReducer } from "../dataManagement/cookieData";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -43,12 +43,8 @@ const CookieView = (props: CookieViewProps) => {
   );
 };
 
-
-
 export default function RootLayout() {
   const isWeb: boolean = Platform.OS === "web";
-
-  // State to store the cookie count
   const [cookieCount, dispatch] = useReducer(cookieReducer, 0);
 
   useEffect(() => {
@@ -58,22 +54,9 @@ export default function RootLayout() {
         value: await getCookies(),
       });
     })();
-    //     // Async function to fetch cookies
-    //     const fetchCookies = async () => {
-    //       setInterval(async () => {
-    //         const cookies = await getCookies(); // Fetch the cookies asynchronously
-    //         setCookieCount(cookies);
-    // // Update the state with the fetched cookies
-    //       }, 10);
 
-    //     };
-    //     fetchCookies(); // Call the async function
-
-    // Hide the splash screen after fetching cookies
     SplashScreen.hideAsync();
-  }, []); // Empty dependency array ensures this runs only once after mount
-
-  // If platform is web, return early
+  }, []);
   if (isWeb) {
     return (
       <Stack>
@@ -87,7 +70,7 @@ export default function RootLayout() {
         <CookieView isWeb={isWeb} cookieCount={cookieCount} />
         <CookieContext.Provider value={cookieCount}>
           <CookieDispatchContext.Provider value={dispatch}>
-        –    <Stack>
+            <Stack>
               <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
               <Stack.Screen name="+not-found" />
             </Stack>
