@@ -125,7 +125,6 @@ export const styles = StyleSheet.create({
     fontSize: 50,
     fontFamily: "papyrus",
     color: "#121212",
-    backgroundColor: "#FF6347",
     borderRadius: 30,
     textAlignVertical: "center",
 
