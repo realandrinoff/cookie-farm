@@ -85,7 +85,7 @@ export const styles = StyleSheet.create({
   shopOfferText: {},
 
   TimerView: {
-    display: "flex", 
+    display: "flex",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 100,
@@ -93,7 +93,6 @@ export const styles = StyleSheet.create({
   },
 
   bakingTimer: {
-
     textAlign: "center",
     fontFamily: "papyrus",
     fontSize: 40,
@@ -125,14 +124,12 @@ export const styles = StyleSheet.create({
     color: "#121212",
     borderRadius: 30,
     textAlignVertical: "center",
-
   },
   cookieSelector: {
     alignItems: "center",
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
-    
   },
   cookieTypeBOTH: {
     textAlign: "center",
@@ -141,9 +138,8 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     fontSize: 30,
     fontFamily: "papyrus",
-    
   },
-  cookieTypeSelected : {
+  cookieTypeSelected: {
     overflow: "hidden",
     borderColor: "orange",
     borderWidth: 5,
@@ -151,7 +147,7 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
   },
   cookieTypeNotSelected: {
-    borderWidth: 0
+    borderWidth: 0,
   },
   cacaoContainer: {
     display: "flex",
@@ -168,9 +164,8 @@ export const styles = StyleSheet.create({
     // left: "54%",
     backgroundColor: "#137989",
     textAlign: "center",
-    textAlignVertical: "center"
-
-  } ,
+    textAlignVertical: "center",
+  },
   cacaoCounterText: {
     fontFamily: "papyrus",
     position: "relative",

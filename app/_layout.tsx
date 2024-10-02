@@ -32,8 +32,6 @@ const CookieView = (props: CookieViewProps) => {
   );
 };
 
-
-
 export default function RootLayout() {
   const isWeb: boolean = Platform.OS === "web";
   const [cookieCount, dispatch] = useReducer(cookieReducer, 0);
@@ -47,7 +45,7 @@ export default function RootLayout() {
       });
     })();
   }, []);
-  
+
   useEffect(() => {
     (async () => {
       dispatch({
@@ -74,11 +72,14 @@ export default function RootLayout() {
             <CacaoCounter cacaoAmount={cacaoCount}></CacaoCounter>
             <CacaoContext.Provider value={cacaoCount}>
               <CacaoDispatchContext.Provider value={dispatchCacao}>
-            <Stack>
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="+not-found" />
-            </Stack>
-            </CacaoDispatchContext.Provider>
+                <Stack>
+                  <Stack.Screen
+                    name="(tabs)"
+                    options={{ headerShown: false }}
+                  />
+                  <Stack.Screen name="+not-found" />
+                </Stack>
+              </CacaoDispatchContext.Provider>
             </CacaoContext.Provider>
           </CookieDispatchContext.Provider>
         </CookieContext.Provider>

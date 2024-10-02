@@ -4,25 +4,21 @@ import { addCacao } from "../dataManagement/cacaoData";
 import { CacaoContext, CacaoDispatchContext } from "../app/cacaoContext";
 import { useContext } from "react";
 
-
-
 export const CacaoButton = () => {
-const dispatch = useContext(CacaoDispatchContext);
+  const dispatch = useContext(CacaoDispatchContext);
   return (
     <Text
       onPress={() => {
         dispatch({
-            type: "add",
-            value: 1,
-          });
+          type: "add",
+          value: 1,
+        });
       }}
     >
       ADD COCOA
     </Text>
   );
 };
-
-
 
 export const CacaoCounter = ({ cacaoAmount }) => {
   return (

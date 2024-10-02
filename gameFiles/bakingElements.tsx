@@ -21,14 +21,14 @@ export const BakingTimer = ({
   isChocChip,
   isRegular,
   hideOptions,
-  setHideOptions
+  setHideOptions,
 }: cookieTimerType) => {
   const dispatch = useContext(CookieDispatchContext);
   const cookieCount = useContext(CookieContext);
   var [isDone, setIsDone] = useState(false);
   var [timeLeft, setTimeLeft] = useState(NaN);
   var [isPressed, setIsPressed] = useState(true);
-  var [isCooking, setIsCooking] = useState(false);  
+  var [isCooking, setIsCooking] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
