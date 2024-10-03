@@ -22,7 +22,7 @@ type CookieViewProps = {
 
 const CookieView = (props: CookieViewProps) => {
   return (
-    <View style={props.isWeb ? styles.HIDDEN : styles.cookieContainer}>
+    <View style={styles.cookieContainer}>
       <Image
         source={require("../assets/images/cookie-regular.png")}
         style={styles.cookieImage}
@@ -66,10 +66,14 @@ export default function RootLayout() {
   } else {
     return (
       <>
+        <View style={styles.bothCounters}>
         <CookieView isWeb={isWeb} cookieCount={cookieCount} />
+        
+        <CacaoCounter cacaoAmount={cacaoCount}></CacaoCounter>
+        </View>
         <CookieContext.Provider value={cookieCount}>
           <CookieDispatchContext.Provider value={dispatch}>
-            <CacaoCounter cacaoAmount={cacaoCount}></CacaoCounter>
+            
             <CacaoContext.Provider value={cacaoCount}>
               <CacaoDispatchContext.Provider value={dispatchCacao}>
                 <Stack>
@@ -83,6 +87,7 @@ export default function RootLayout() {
             </CacaoContext.Provider>
           </CookieDispatchContext.Provider>
         </CookieContext.Provider>
+
       </>
     );
   }

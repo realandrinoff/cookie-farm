@@ -5,5 +5,5 @@ export const CookieValueMap = new Map<string, number>([
 
 export const CookieBakingTimeMap = new Map<string, number>([
   ["regular", 12],
-  ["chocolatechip", 24],
+  ["chocolatechip", 1],
 ]);

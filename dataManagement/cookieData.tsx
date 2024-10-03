@@ -37,7 +37,7 @@ export function cookieReducer(
   cookieCount: number,
   action: cookieAction
 ): number {
-  const addCookies = async (value: number) => {
+  const setCookies = async (value: number) => {
     await AsyncStorage.setItem("cookies", JSON.stringify(value));
   };
   // switch to call dispatch to add, remove(will add soon)
@@ -49,11 +49,24 @@ export function cookieReducer(
       const newValue = cookieCount + action.value;
 
       (async () => {
-        await addCookies(newValue);
+        await setCookies(newValue);
       })();
 
       return newValue;
     }
+    case "remove": {
+      if (cookieCount - action.value > 0) {
+        const newValue = cookieCount - action.value;
+        (async () => {
+            await setCookies(newValue)
+        })();
+        return newValue
+      }
+      else {
+        return cookieCount
+      }
+        
+  }
     default: {
       throw Error("unknown action {action.type}");
     }

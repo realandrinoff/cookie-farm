@@ -93,6 +93,17 @@ export const BakingTimer = ({
         Collect {CookieType == "chocolatechip" ? "Chocolate Chip" : "Regular"}{" "}
         Cookie
       </Text>
+
+      <Text
+        onPress={() => {
+          dispatch({
+            type: "add",
+            value: 100,
+          });
+        }}
+      >
+        TEST 
+      </Text>
     </View>
   );
 };

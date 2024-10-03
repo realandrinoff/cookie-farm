@@ -28,8 +28,41 @@ export type cacaoAction = {
   value: number;
 };
 
+export const checkCacaoLevel = async (
+  setCacaoLevel: React.Dispatch<number>
+) => {
+  const currentCacaoLevel = await AsyncStorage.getItem("cacaoLevel");
+  if (currentCacaoLevel === null) {
+    setCacaoLevel(1);
+    await AsyncStorage.setItem("cacaoLevel", JSON.stringify(1));
+
+    return 1;
+  } else {
+    setCacaoLevel(JSON.parse(currentCacaoLevel) as number);
+    return JSON.parse(currentCacaoLevel) as number;
+  }
+};
+
+export const increaseCacaoLevel = async () => {
+  const currentCacaoLevel = await AsyncStorage.getItem("cacaoLevel");
+  if (currentCacaoLevel === null) {
+    await AsyncStorage.setItem("cacaoLevel", JSON.stringify(2));
+  } else {
+    await AsyncStorage.setItem(
+      "cacaoLevel",
+      JSON.stringify(JSON.parse(currentCacaoLevel) + 1)
+    );
+  }
+};
+
+// for test purposes
+
+export const resetCacaoLevel = async () => {
+  await AsyncStorage.setItem("cacaoLevel", JSON.stringify(1));
+};
+
 export function cacaoReducer(cacaoCount: number, action: cacaoAction): number {
-  const addCacao = async (value: number) => {
+  const setCacao = async (value: number) => {
     await AsyncStorage.setItem("cacao", JSON.stringify(value));
   };
   // switch to call dispatch to add, remove(will add soon)
@@ -40,7 +73,14 @@ export function cacaoReducer(cacaoCount: number, action: cacaoAction): number {
     case "add": {
       const newValue = cacaoCount + action.value;
       (async () => {
-        await addCacao(newValue);
+        await setCacao(newValue);
+      })();
+      return newValue;
+    }
+    case "remove": {
+      const newValue = cacaoCount - action.value;
+      (async () => {
+        await setCacao(newValue);
       })();
       return newValue;
     }

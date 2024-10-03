@@ -2,9 +2,10 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   bodyContainer: {
+    backgroundColor: "#fff",
     height: "100%",
     width: "100%",
-    backgroundColor: "#FFFFFF",
+
   },
   tabName: {
     fontStyle: "normal",
@@ -30,45 +31,25 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     elevation: 2,
   },
-  tabBarText: {
-    fontSize: 30,
-    color: "#ECEDEE",
-    fontWeight: "bold",
-  },
   tabBarIcon: {
     height: 50,
     width: 50,
   },
   cookieContainer: {
-    display: "flex",
-    flexDirection: "row",
-    marginTop: 50,
-    marginLeft: "75%",
-    borderRadius: 100,
-    width: "25%",
-    height: 50,
-    // backgroundColor: "#FF6347",
-    color: "#ffffff",
-    fontSize: 100,
-    padding: 5,
-    // left: "54%",
-    backgroundColor: "#137989",
-    textAlign: "center",
-    textAlignVertical: "center",
-    // position: "absolute",
+
   },
   cookieCounterText: {
     fontFamily: "papyrus",
     position: "relative",
-    fontSize: 50,
+    fontSize: 30,
     textAlign: "center",
     textAlignVertical: "center",
   },
   cookieImage: {
     position: "relative",
     alignSelf: "center",
-    height: 50,
-    width: 50,
+    height: 25,
+    width: 25,
   },
   HIDDEN: {
     display: "none",
@@ -142,6 +123,7 @@ export const styles = StyleSheet.create({
   cookieTypeSelected: {
     overflow: "hidden",
     borderColor: "orange",
+    fontWeight: 500,
     borderWidth: 5,
     height: 50,
     borderRadius: 20,
@@ -149,34 +131,46 @@ export const styles = StyleSheet.create({
   cookieTypeNotSelected: {
     borderWidth: 0,
   },
-  cacaoContainer: {
-    display: "flex",
-    flexDirection: "row",
-    marginTop: 20,
-    marginLeft: "75%",
-    borderRadius: 100,
-    width: "25%",
-    height: 50,
-    // backgroundColor: "#FF6347",
-    color: "#ffffff",
-    fontSize: 100,
-    padding: 5,
-    // left: "54%",
-    backgroundColor: "#137989",
-    textAlign: "center",
-    textAlignVertical: "center",
+  cacaoCounter: {
+    
   },
   cacaoCounterText: {
     fontFamily: "papyrus",
     position: "relative",
-    fontSize: 50,
+    fontSize: 30,
     textAlign: "center",
     textAlignVertical: "center",
   },
   cacaoCounterImage: {
     position: "relative",
     alignSelf: "center",
-    height: 45,
-    width: 45,
+    height: 25,
+    width: 25,
   },
+  cacaoContainer:{
+    display: "flex",
+    flexDirection: "column",
+    marginTop: 50,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
+  cacaoTree: { 
+    height: 300,
+    width: 300, 
+  },
+  cacaoTreeCollectText: {
+    fontSize: 70,
+    fontFamily: "papyrus",
+    textAlign: 'center'
+  },
+  bothCounters: { 
+    marginTop: 50,
+    height: 50,
+    display : 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    backfaceVisibility: 'hidden',
+    overflow: 'hidden'
+  }
 });

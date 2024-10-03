@@ -17,7 +17,6 @@ export default function TabLayout() {
         name="index"
         options={{
           title: '',
-          tabBarLabelStyle: styles.tabBarText,
           tabBarIcon: ({ focused, color, size }) => {
             return (
               <Image
@@ -33,7 +32,6 @@ export default function TabLayout() {
         name="cacaobeansfarm"
         options={{
           title: '',
-          tabBarLabelStyle: styles.tabBarText,
           tabBarIcon: ({ focused, color, size }) => {
             return (
               <Image
@@ -48,7 +46,6 @@ export default function TabLayout() {
         name="shop"
         options={{
           title: '',
-          tabBarLabelStyle: styles.tabBarText,
           tabBarIcon: ({ focused, color, size }) => {
             return (
               <Image
@@ -63,7 +60,6 @@ export default function TabLayout() {
         name="bakery"
         options={{
           title: '',
-          tabBarLabelStyle: styles.tabBarText,
           tabBarIcon: ({ focused, color, size }) => {
             return (
               <Image
@@ -79,7 +75,6 @@ export default function TabLayout() {
         name="settings"
         options={{
           title: '',
-          tabBarLabelStyle: styles.tabBarText,
           tabBarIcon: ({ focused, color, size }) => {
             return (
               <Image
