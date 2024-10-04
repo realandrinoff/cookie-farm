@@ -57,8 +57,10 @@ export const increaseCacaoLevel = async () => {
 
 // for test purposes
 
-export const resetCacaoLevel = async () => {
+export const resetCacaoLevel = async (setCacaoLevel: React.Dispatch<number>) => {
   await AsyncStorage.setItem("cacaoLevel", JSON.stringify(1));
+  setCacaoLevel(1);
+  return 
 };
 
 export function cacaoReducer(cacaoCount: number, action: cacaoAction): number {

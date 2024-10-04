@@ -7,9 +7,9 @@ import { CacaoFarmLevel } from "../../gameFiles/cacaoBeanFarmElements";
 export default function cacaoScreen() {
   return (
     <View style={styles.bodyContainer}>
-       <CacaoFarmLevel />
+       
       <Text style={styles.tabName}> Cacao Beans Farm </Text>
-      
+      <CacaoFarmLevel />
       <CacaoButton />
 
 

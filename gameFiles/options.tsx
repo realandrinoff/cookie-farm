@@ -4,24 +4,21 @@ import React from "react";
 
 export const CookieOptions = ({
   hideOptions,
-  isChocChip,
-  isRegular,
-  setIsChocChip,
-  setIsRegular,
+  typeOfCookie,
+  setTypeOfCookie,
 }) => {
   return (
     <>
       <View style={hideOptions ? styles.HIDDEN : styles.cookieSelector}>
         <Text
           style={[
-            isRegular
+            typeOfCookie == "regular"
               ? styles.cookieTypeSelected
               : styles.cookieTypeNotSelected,
             styles.cookieTypeBOTH,
           ]}
           onPress={() => {
-            setIsChocChip(false);
-            setIsRegular(true);
+            setTypeOfCookie("regular");
           }}
         >
           REGULAR
@@ -29,17 +26,27 @@ export const CookieOptions = ({
 
         <Text
           style={[
-            isChocChip
+            typeOfCookie == "chocolatechip"
               ? styles.cookieTypeSelected
               : styles.cookieTypeNotSelected,
             styles.cookieTypeBOTH,
           ]}
           onPress={() => {
-            setIsChocChip(true);
-            setIsRegular(false);
+            setTypeOfCookie("chocolatechip");
           }}
         >
           CHOCOLATE CHIP
+        </Text>
+        <Text
+        style = {[
+          typeOfCookie == "buttercup" ? styles.cookieTypeSelected : styles.cookieTypeNotSelected,
+          styles.cookieTypeBOTH
+        ]}
+        onPress = {() => {
+          setTypeOfCookie("buttercup")
+        }
+        }>
+            Butterscotch Cup
         </Text>
       </View>
     </>

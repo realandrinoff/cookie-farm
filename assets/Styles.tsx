@@ -5,7 +5,6 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff",
     height: "100%",
     width: "100%",
-
   },
   tabName: {
     fontStyle: "normal",
@@ -34,9 +33,6 @@ export const styles = StyleSheet.create({
   tabBarIcon: {
     height: 50,
     width: 50,
-  },
-  cookieContainer: {
-
   },
   cookieCounterText: {
     fontFamily: "papyrus",
@@ -131,9 +127,7 @@ export const styles = StyleSheet.create({
   cookieTypeNotSelected: {
     borderWidth: 0,
   },
-  cacaoCounter: {
-    
-  },
+  cacaoCounter: {},
   cacaoCounterText: {
     fontFamily: "papyrus",
     position: "relative",
@@ -147,7 +141,7 @@ export const styles = StyleSheet.create({
     height: 25,
     width: 25,
   },
-  cacaoContainer:{
+  cacaoContainer: {
     display: "flex",
     flexDirection: "column",
     marginTop: 50,
@@ -155,22 +149,48 @@ export const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  cacaoTree: { 
-    height: 300,
-    width: 300, 
+  cacaoTree: {
+    marginBottom: 50,
+    marginTop: 50,
+    height: 200,
+    width: 200,
   },
   cacaoTreeCollectText: {
-    fontSize: 70,
+    fontSize: 50,
     fontFamily: "papyrus",
-    textAlign: 'center'
+    textAlign: "center",
   },
-  bothCounters: { 
+  allCounters: {
     marginTop: 50,
     height: 50,
-    display : 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    backfaceVisibility: 'hidden',
-    overflow: 'hidden'
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    backfaceVisibility: "hidden",
+    overflow: "hidden",
+  },
+  cacaoTreeUpgradeText: {
+    fontSize: 30,
+    fontFamily: "papyrus",
+    textAlign: "center",
+
+  },
+  cacaoTreeUpgradeContainer: {
+    display: "flex",
+    justifyContent: 'center',
+    flexDirection: "column",
+    alignItems: "center",
+    marginTop: 50,
+  },
+  requirementsText: {
+    fontSize: 30,
+    fontFamily: "papyrus",
+    textAlign: "center",
+
+  },
+  requirementsIcons: {
+    alignContent: "center",
+    height: 25,
+    width: 25,
   }
 });

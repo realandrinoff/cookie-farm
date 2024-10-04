@@ -11,6 +11,8 @@ import { cookieReducer } from "../dataManagement/cookieData";
 import { CacaoCounter } from "../gameFiles/cacaoBeanFarmElements";
 import { cacaoReducer, getCacaoAmount } from "../dataManagement/cacaoData";
 import { CacaoContext, CacaoDispatchContext } from "./cacaoContext";
+import { getPeanutAmount, peanutReducer } from "../dataManagement/peanutData";
+import { PeanutContext, PeanutDispatchContext } from "./peanutContext";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -20,9 +22,14 @@ type CookieViewProps = {
   isWeb: boolean;
 };
 
+type PeanutViewProps = {
+  peanutCount: number;
+  isWeb: boolean;
+};
+
 const CookieView = (props: CookieViewProps) => {
   return (
-    <View style={styles.cookieContainer}>
+    <View>
       <Image
         source={require("../assets/images/cookie-regular.png")}
         style={styles.cookieImage}
@@ -32,10 +39,25 @@ const CookieView = (props: CookieViewProps) => {
   );
 };
 
+const PeanutView = (props:PeanutViewProps) => {
+  return (
+    <View>
+      <Image
+        source={require("../assets/images/peanut-regular.png")}
+        style={styles.cookieImage}
+      />
+      <Text style={styles.cookieCounterText}>{props.peanutCount}</Text>
+    </View>
+  );
+};
+
+
 export default function RootLayout() {
   const isWeb: boolean = Platform.OS === "web";
   const [cookieCount, dispatch] = useReducer(cookieReducer, 0);
   const [cacaoCount, dispatchCacao] = useReducer(cacaoReducer, NaN);
+  const [peanutCount, dispatchPeanut] = useReducer(peanutReducer, 0);
+
 
   useEffect(() => {
     (async () => {
@@ -53,8 +75,15 @@ export default function RootLayout() {
         value: await getCookies(),
       });
     })();
+  }, []);
 
-    SplashScreen.hideAsync();
+  useEffect(() => {
+    (async () => {
+      dispatchPeanut({
+        type: "initialize",
+        value: await getPeanutAmount(),
+      });
+    })();
   }, []);
   if (isWeb) {
     return (
@@ -66,14 +95,15 @@ export default function RootLayout() {
   } else {
     return (
       <>
-        <View style={styles.bothCounters}>
+        <View style={styles.allCounters}>
         <CookieView isWeb={isWeb} cookieCount={cookieCount} />
-        
+        <PeanutView isWeb={isWeb} peanutCount={peanutCount} />
         <CacaoCounter cacaoAmount={cacaoCount}></CacaoCounter>
         </View>
         <CookieContext.Provider value={cookieCount}>
           <CookieDispatchContext.Provider value={dispatch}>
-            
+            <PeanutContext.Provider value={peanutCount}>
+            <PeanutDispatchContext.Provider value={dispatchPeanut}>
             <CacaoContext.Provider value={cacaoCount}>
               <CacaoDispatchContext.Provider value={dispatchCacao}>
                 <Stack>
@@ -85,6 +115,8 @@ export default function RootLayout() {
                 </Stack>
               </CacaoDispatchContext.Provider>
             </CacaoContext.Provider>
+            </PeanutDispatchContext.Provider>
+            </PeanutContext.Provider>
           </CookieDispatchContext.Provider>
         </CookieContext.Provider>
 

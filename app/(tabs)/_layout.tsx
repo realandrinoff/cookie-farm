@@ -41,6 +41,21 @@ export default function TabLayout() {
             );
           }
         }}
+        
+      />
+      <Tabs.Screen
+        name="peanutFarm"
+        options={{
+          title: '',
+          tabBarIcon: ({ focused, color, size }) => {
+            return (
+              <Image
+                source={focused ? require('../../assets/images/peanut-active.png') : require('../../assets/images/peanut-inactive.png')}
+                style={styles.tabBarIcon}
+              />
+            );
+          }
+        }}
       />
       <Tabs.Screen
         name="shop"

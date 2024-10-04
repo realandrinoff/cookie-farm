@@ -1,30 +1,31 @@
 import { View, Text, Image, Platform } from "react-native";
 import { styles } from "../assets/Styles";
 import {
-  increaseCacaoLevel,
-  resetCacaoLevel,
-} from "../dataManagement/cacaoData";
+  increasePeanutLevel,
+  resetPeanutLevel,
+} from "../dataManagement/peanutData";
 import { CacaoDispatchContext } from "../app/cacaoContext";
 import { useContext, useEffect, useState } from "react";
 import React from "react";
-import { checkCacaoLevel } from "../dataManagement/cacaoData";
+import { checkPeanutLevel } from "../dataManagement/peanutData";
 import { CookieDispatchContext, CookieContext } from "../app/cookieContext";
-import { CacaoUpgradePrice } from "./UpgradePriceMap";
+import { PeanutUpgradePrice } from "./UpgradePriceMap";
+import { PeanutDispatchContext } from "../app/peanutContext";
 
-export const CacaoFarmLevel = ({}) => {
-  var [cacaoLevel, setCacaoLevel] = useState<number>();
+export const PeanutFarmLevel = ({}) => {
+  var [peanutLevel, setPeanutLevel] = useState<number>();
   useEffect(() => {
     (async () => {
-      setCacaoLevel(await checkCacaoLevel(setCacaoLevel));
+      setPeanutLevel(await checkPeanutLevel(setPeanutLevel));
     })();
   });
   if (Platform.OS != "web") {
     return (
       <View>
-        <Text style={styles.cacaoTreeUpgradeText}>cacao level: {cacaoLevel}</Text>
-        <UpgradeCacaoButton
-          setCacaoLevel={setCacaoLevel}
-          cacaoLevel={cacaoLevel}
+        <Text style={styles.cacaoTreeUpgradeText}>peanut level: {peanutLevel}</Text>
+        <UpgradePeanutButton
+          setPeanutLevel={setPeanutLevel}
+          peanutLevel={peanutLevel}
         />
       </View>
     );
@@ -33,53 +34,58 @@ export const CacaoFarmLevel = ({}) => {
   }
 };
 
-export const CacaoButton = ({}) => {
-  const [cacaoLevel, setCacaoLevel] = useState<number>();
+export const PeanutButton = ({}) => {
+  const [peanutLevel, setPeanutLevel] = useState<number>();
   useEffect(() => {
     (async () => {
       console.log("inside async");
-      await checkCacaoLevel(setCacaoLevel);
+      await checkPeanutLevel(setPeanutLevel);
     })();
   });
-  const dispatch = useContext(CacaoDispatchContext);
+  const dispatch = useContext(PeanutDispatchContext);
   return (
     <View style={styles.cacaoContainer}>
       <Image
-        source={require("../assets/images/cacaotree.png")}
+        source={require("../assets/images/peanut-tree.png")}
         style={styles.cacaoTree}
       />
       <Text
         style={styles.cacaoTreeCollectText}
         onPress={() => {
           (async () => {
-            setCacaoLevel(await checkCacaoLevel(setCacaoLevel));
+            setPeanutLevel(await checkPeanutLevel(setPeanutLevel));
           })();
-          console.log(cacaoLevel);
+          console.log(peanutLevel);
           dispatch({
             type: "add",
-            value: cacaoLevel,
+            value: peanutLevel,
           });
         }}
       >
-        collect cacao
+        collect peanuts
       </Text>
     </View>
   );
 };
 
-export const CacaoCounter = ({ cacaoAmount }) => {
+export const PeanutCounter = ({ peanutAmount }) => {
   return (
     <View style={styles.cacaoCounter}>
       <Image
-        source={require("../assets/images/cacao-regular.png")}
+        source={require("../assets/images/peanut-regular.png")}
         style={styles.cacaoCounterImage}
       />
-      <Text style={styles.cookieCounterText}>{cacaoAmount}</Text>
+      <Text style={styles.cookieCounterText}>{peanutAmount}</Text>
     </View>
   );
 };
 
-const UpgradeCacaoButton = ({ setCacaoLevel, cacaoLevel }) => {
+
+
+
+
+// done
+const UpgradePeanutButton = ({ setPeanutLevel, peanutLevel }) => {
   const dispatch = useContext(CookieDispatchContext);
   const cookieCount = useContext(CookieContext);
   var [notEnough, setNotEnough] = useState(false);
@@ -89,19 +95,19 @@ const UpgradeCacaoButton = ({ setCacaoLevel, cacaoLevel }) => {
       <Text
         style={styles.cacaoTreeUpgradeText}
         onPress={() => {
-          if (cacaoLevel < 5) {
-            if (cookieCount < CacaoUpgradePrice.get(cacaoLevel)) {
+          if (peanutLevel < 5) {
+            if (cookieCount < PeanutUpgradePrice.get(peanutLevel)) {
               setNotEnough(true);
               return <Text>You don't have enough cookies</Text>;
             } else {
               setNotEnough(false);
               dispatch({
                 type: "remove",
-                value: CacaoUpgradePrice.get(cacaoLevel),
+                value: PeanutUpgradePrice.get(peanutLevel),
               });
-              setCacaoLevel(cacaoLevel + 1);
+              setPeanutLevel(peanutLevel + 1);
               (async () => {
-                await increaseCacaoLevel();
+                await increasePeanutLevel();
               })();
             }
           } else {
@@ -109,16 +115,16 @@ const UpgradeCacaoButton = ({ setCacaoLevel, cacaoLevel }) => {
         }}
       >
         {[
-          cacaoLevel == 5
+          peanutLevel == 5
             ? "You have reached MAX level"
-            : "Upgrade cacao level to " +
-              (cacaoLevel + 1) +
+            : "Upgrade peanut level to " +
+              (peanutLevel + 1) +
               " for " +
-              CacaoUpgradePrice.get(cacaoLevel) +
+              PeanutUpgradePrice.get(peanutLevel) +
               " cookies",
         ]}
       </Text>
-      <Text style={styles.cacaoTreeUpgradeText} onPress={() => resetCacaoLevel(setCacaoLevel)}>Test Reset</Text>
+      <Text style={styles.cacaoTreeUpgradeText} onPress={() => resetPeanutLevel(setPeanutLevel)}>Test Reset</Text>
     </View>
   );
 };

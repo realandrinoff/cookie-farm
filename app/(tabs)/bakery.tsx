@@ -6,15 +6,19 @@ import { CookieContext, CookieDispatchContext } from "../cookieContext";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import React from "react";
 import { CookieBakingTimeMap, CookieValueMap } from "../../gameFiles/CookieMap";
-import { BakingTimer } from "../../gameFiles/bakingElements";
+import {
+  BakingTimer,
+  CookieRequirements,
+} from "../../gameFiles/bakingElements";
 import { CookieOptions } from "../../gameFiles/options";
 
 export default function bakeryScreen() {
-  const [isChocChip, setIsChocChip] = useState(false);
+  const [typeOfCookie, setTypeOfCookie] = useState<string>("regular");
   const [isRegular, setIsRegular] = useState(true);
   const dispatch = useContext(CookieDispatchContext);
   const cookieCount = useContext(CookieContext);
   var [hideOptions, setHideOptions] = useState(false);
+
   return (
     <>
       <View style={styles.bodyContainer}>
@@ -22,21 +26,16 @@ export default function bakeryScreen() {
         <View>
           <CookieOptions
             hideOptions={hideOptions}
-            isChocChip={isChocChip}
-            isRegular={isRegular}
-            setIsChocChip={setIsChocChip}
-            setIsRegular={setIsRegular}
+            typeOfCookie={typeOfCookie}
+            setTypeOfCookie={setTypeOfCookie}
           />
+          <CookieRequirements typeOfCookie={typeOfCookie} />
 
           <BakingTimer
             hideOptions={hideOptions}
             setHideOptions={setHideOptions}
-            isChocChip={isChocChip}
-            isRegular={isRegular}
-            seconds={CookieBakingTimeMap.get(
-              isChocChip ? "chocolatechip" : "regular"
-            )}
-            CookieType={isChocChip ? "chocolatechip" : "regular"}
+            typeOfCookie={typeOfCookie}
+            seconds={CookieBakingTimeMap.get(typeOfCookie)}
           />
         </View>
       </View>

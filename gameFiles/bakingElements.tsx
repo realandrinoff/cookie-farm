@@ -1,14 +1,18 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { styles } from "../assets/Styles";
 import { CookieContext, CookieDispatchContext } from "../app/cookieContext";
 import { CookieBakingTimeMap, CookieValueMap } from "./CookieMap";
+import {
+  CacaoRequirements,
+  PeanutRequirements,
+} from "./TypeCookiesRequirements";
+import { CacaoContext, CacaoDispatchContext } from "../app/cacaoContext";
+import { PeanutContext, PeanutDispatchContext } from "../app/peanutContext";
 
 export type cookieTimerType = {
   seconds: number;
-  CookieType: string;
-  isRegular: boolean;
-  isChocChip: boolean;
+  typeOfCookie: string;
   hideOptions: boolean;
   setHideOptions: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -17,9 +21,7 @@ export const CollectButton = ({ cookieType }) => {};
 
 export const BakingTimer = ({
   seconds,
-  CookieType,
-  isChocChip,
-  isRegular,
+  typeOfCookie,
   hideOptions,
   setHideOptions,
 }: cookieTimerType) => {
@@ -29,6 +31,16 @@ export const BakingTimer = ({
   var [timeLeft, setTimeLeft] = useState(NaN);
   var [isPressed, setIsPressed] = useState(true);
   var [isCooking, setIsCooking] = useState(false);
+  const cacaoCount = useContext(CacaoContext);
+  const dispatchCacao = useContext(CacaoDispatchContext);
+  const peanutCount = useContext(PeanutContext);
+  const dispatchPeanut = useContext(PeanutDispatchContext);
+
+  const cacaoPrice = CacaoRequirements.get(typeOfCookie);
+
+  const peanutPrice = PeanutRequirements.get(typeOfCookie);
+
+  const [isEnough, setIsEnough] = useState<boolean>(true);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -49,22 +61,48 @@ export const BakingTimer = ({
     return () => clearInterval(timer);
   }, [timeLeft]);
 
-  console.log(isDone);
   return (
     <View>
       <Text
         onPress={() => {
-          setIsCooking(true);
-          setTimeLeft(seconds);
-          setIsPressed(true);
-          setHideOptions(true);
+          if (cacaoCount >= cacaoPrice) {
+            if (peanutCount >= peanutPrice) {
+              dispatchCacao({
+                type: "remove",
+                value: cacaoPrice,
+              });
+              dispatchPeanut({
+                type: "remove",
+                value: peanutPrice,
+              });
+              setIsCooking(true);
+              setTimeLeft(seconds);
+              setIsPressed(true);
+              setHideOptions(true);
+              setIsEnough(true);
+            } else {
+              setIsEnough(false);
+            }
+          } else {
+            setIsEnough(false);
+          }
         }}
         style={[
           isCooking ? styles.HIDDEN : styles.bakeButton,
           isPressed ? styles.emptystyle : styles.HIDDEN,
         ]}
       >
-        Bake {isRegular ? "Regular" : "Chocolate Chip"} Cookie
+        {isEnough
+          ? "Bake " +
+            (typeOfCookie == "chocolatechip"
+              ? "Chocolate Chip "
+              : typeOfCookie == "regular"
+              ? "Regular "
+              : typeOfCookie == "buttercup"
+              ? "Butterscotch Cup "
+              : "Not known ") +
+            "cookie"
+          : "You don't have enough materials"}
       </Text>
 
       <Text
@@ -83,15 +121,24 @@ export const BakingTimer = ({
         onPress={() => {
           dispatch({
             type: "add",
-            value: CookieValueMap.get(CookieType),
+            value: CookieValueMap.get(typeOfCookie),
           });
           setIsPressed(true);
           setIsDone(false);
           setHideOptions(false);
         }}
       >
-        Collect {CookieType == "chocolatechip" ? "Chocolate Chip" : "Regular"}{" "}
-        Cookie
+        Collect{" "}
+        {[
+          typeOfCookie == "chocolatechip"
+            ? "Chocolate Chip"
+            : typeOfCookie == "regular"
+            ? "Regular"
+            : typeOfCookie == "buttercup"
+            ? "Butterscotch Cup"
+            : "Not known",
+        ]}{" "}
+        cookie
       </Text>
 
       <Text
@@ -102,7 +149,26 @@ export const BakingTimer = ({
           });
         }}
       >
-        TEST 
+        TEST
+      </Text>
+    </View>
+  );
+};
+
+export const CookieRequirements = ({ typeOfCookie }) => {
+  return (
+    <View>
+      <Text style={styles.requirementsText}>
+        Requirements: {CacaoRequirements.get(typeOfCookie)}{" "}
+        <Image
+          style={styles.requirementsIcons}
+          source={require("../assets/images/cacao-regular.png")}
+        />
+        , {PeanutRequirements.get(typeOfCookie)} {""}
+        <Image
+          style={styles.requirementsIcons}
+          source={require("../assets/images/peanut-regular.png")}
+        />
       </Text>
     </View>
   );
