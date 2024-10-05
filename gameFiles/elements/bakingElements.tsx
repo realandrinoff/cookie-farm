@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState } from "react";
 import { View, Text, Image } from "react-native";
-import { styles } from "../assets/Styles";
-import { CookieContext, CookieDispatchContext } from "../app/cookieContext";
-import { CookieBakingTimeMap, CookieValueMap } from "./CookieMap";
+import { styles } from "../../assets/Styles";
+import { CookieContext, CookieDispatchContext } from "../../app/cookieContext";
+import { CookieBakingTimeMap, CookieValueMap } from "../maps/CookieMap";
 import {
   CacaoRequirements,
   PeanutRequirements,
-} from "./TypeCookiesRequirements";
-import { CacaoContext, CacaoDispatchContext } from "../app/cacaoContext";
-import { PeanutContext, PeanutDispatchContext } from "../app/peanutContext";
+} from "../maps/TypeCookiesRequirements";
+import { CacaoContext, CacaoDispatchContext } from "../../app/cacaoContext";
+import { PeanutContext, PeanutDispatchContext } from "../../app/peanutContext";
 
 export type cookieTimerType = {
   seconds: number;
@@ -162,12 +162,12 @@ export const CookieRequirements = ({ typeOfCookie }) => {
         Requirements: {CacaoRequirements.get(typeOfCookie)}{" "}
         <Image
           style={styles.requirementsIcons}
-          source={require("../assets/images/cacao-regular.png")}
+          source={require("../../assets/images/cacao-regular.png")}
         />
         , {PeanutRequirements.get(typeOfCookie)} {""}
         <Image
           style={styles.requirementsIcons}
-          source={require("../assets/images/peanut-regular.png")}
+          source={require("../../assets/images/peanut-regular.png")}
         />
       </Text>
     </View>

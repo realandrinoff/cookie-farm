@@ -8,7 +8,7 @@ import { getCookies } from "../dataManagement/cookieData";
 import { styles } from "../assets/Styles";
 import { CookieContext, CookieDispatchContext } from "./cookieContext";
 import { cookieReducer } from "../dataManagement/cookieData";
-import { CacaoCounter } from "../gameFiles/cacaoBeanFarmElements";
+import { CacaoCounter } from "../gameFiles/elements/cacaoBeanFarmElements";
 import { cacaoReducer, getCacaoAmount } from "../dataManagement/cacaoData";
 import { CacaoContext, CacaoDispatchContext } from "./cacaoContext";
 import { getPeanutAmount, peanutReducer } from "../dataManagement/peanutData";

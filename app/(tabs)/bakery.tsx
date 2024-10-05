@@ -5,12 +5,12 @@ import { CookieContext, CookieDispatchContext } from "../cookieContext";
 
 import { TouchableOpacity } from "react-native-gesture-handler";
 import React from "react";
-import { CookieBakingTimeMap, CookieValueMap } from "../../gameFiles/CookieMap";
+import { CookieBakingTimeMap, CookieValueMap } from "../../gameFiles/maps/CookieMap";
 import {
   BakingTimer,
   CookieRequirements,
-} from "../../gameFiles/bakingElements";
-import { CookieOptions } from "../../gameFiles/options";
+} from "../../gameFiles/elements/bakingElements";
+import { CookieOptions } from "../../gameFiles/elements/options";
 
 export default function bakeryScreen() {
   const [typeOfCookie, setTypeOfCookie] = useState<string>("regular");

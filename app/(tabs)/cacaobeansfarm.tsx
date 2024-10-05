@@ -1,8 +1,8 @@
 import { View, Text } from "react-native";
 import { styles } from "../../assets/Styles";
 import React from "react";
-import { CacaoButton } from "../../gameFiles/cacaoBeanFarmElements";
-import { CacaoFarmLevel } from "../../gameFiles/cacaoBeanFarmElements";
+import { CacaoButton } from "../../gameFiles/elements/cacaoBeanFarmElements";
+import { CacaoFarmLevel } from "../../gameFiles/elements/cacaoBeanFarmElements";
 
 export default function cacaoScreen() {
   return (

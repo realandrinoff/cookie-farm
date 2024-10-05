@@ -1,7 +1,7 @@
 import { View, Text } from "react-native";
 import { styles } from "../../assets/Styles";
 import React from "react";
-import { PeanutButton, PeanutFarmLevel } from "../../gameFiles/peanutFarmElements";
+import { PeanutButton, PeanutFarmLevel } from "../../gameFiles/elements/peanutFarmElements";
 
 export default function cacaoScreen() {
   return (

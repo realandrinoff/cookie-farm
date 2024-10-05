@@ -1,16 +1,16 @@
 import { View, Text, Image, Platform } from "react-native";
-import { styles } from "../assets/Styles";
+import { styles } from "../../assets/Styles";
 import {
   increasePeanutLevel,
   resetPeanutLevel,
-} from "../dataManagement/peanutData";
-import { CacaoDispatchContext } from "../app/cacaoContext";
+} from "../../dataManagement/peanutData";
+import { CacaoDispatchContext } from "../../app/cacaoContext";
 import { useContext, useEffect, useState } from "react";
 import React from "react";
-import { checkPeanutLevel } from "../dataManagement/peanutData";
-import { CookieDispatchContext, CookieContext } from "../app/cookieContext";
-import { PeanutUpgradePrice } from "./UpgradePriceMap";
-import { PeanutDispatchContext } from "../app/peanutContext";
+import { checkPeanutLevel } from "../../dataManagement/peanutData";
+import { CookieDispatchContext, CookieContext } from "../../app/cookieContext";
+import { PeanutUpgradePrice } from "../maps/UpgradePriceMap";
+import { PeanutDispatchContext } from "../../app/peanutContext";
 
 export const PeanutFarmLevel = ({}) => {
   var [peanutLevel, setPeanutLevel] = useState<number>();
@@ -46,7 +46,7 @@ export const PeanutButton = ({}) => {
   return (
     <View style={styles.cacaoContainer}>
       <Image
-        source={require("../assets/images/peanut-tree.png")}
+        source={require("../../assets/images/peanut-tree.png")}
         style={styles.cacaoTree}
       />
       <Text
@@ -72,7 +72,7 @@ export const PeanutCounter = ({ peanutAmount }) => {
   return (
     <View style={styles.cacaoCounter}>
       <Image
-        source={require("../assets/images/peanut-regular.png")}
+        source={require("../../assets/images/peanut-regular.png")}
         style={styles.cacaoCounterImage}
       />
       <Text style={styles.cookieCounterText}>{peanutAmount}</Text>
@@ -124,7 +124,7 @@ const UpgradePeanutButton = ({ setPeanutLevel, peanutLevel }) => {
               " cookies",
         ]}
       </Text>
-      <Text style={styles.cacaoTreeUpgradeText} onPress={() => resetPeanutLevel(setPeanutLevel)}>Test Reset</Text>
+      {/* <Text style={styles.cacaoTreeUpgradeText} onPress={() => resetPeanutLevel(setPeanutLevel)}>Test Reset</Text> */}
     </View>
   );
 };

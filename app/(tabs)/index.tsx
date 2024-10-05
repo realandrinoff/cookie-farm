@@ -6,8 +6,6 @@ export default function homeScreen(){
         <View style = {styles.bodyContainer}>
         <Text style={styles.tabName}> Cookie bakery </Text>
         <Text style={styles.normalText}></Text>
-        
-
         </View>
     );
 }

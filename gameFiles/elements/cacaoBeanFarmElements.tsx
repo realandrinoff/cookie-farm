@@ -1,15 +1,15 @@
 import { View, Text, Image, Platform } from "react-native";
-import { styles } from "../assets/Styles";
+import { styles } from "../../assets/Styles";
 import {
   increaseCacaoLevel,
   resetCacaoLevel,
-} from "../dataManagement/cacaoData";
-import { CacaoDispatchContext } from "../app/cacaoContext";
+} from "../../dataManagement/cacaoData";
+import { CacaoDispatchContext } from "../../app/cacaoContext";
 import { useContext, useEffect, useState } from "react";
 import React from "react";
-import { checkCacaoLevel } from "../dataManagement/cacaoData";
-import { CookieDispatchContext, CookieContext } from "../app/cookieContext";
-import { CacaoUpgradePrice } from "./UpgradePriceMap";
+import { checkCacaoLevel } from "../../dataManagement/cacaoData";
+import { CookieDispatchContext, CookieContext } from "../../app/cookieContext";
+import { CacaoUpgradePrice } from "../maps/UpgradePriceMap";
 
 export const CacaoFarmLevel = ({}) => {
   var [cacaoLevel, setCacaoLevel] = useState<number>();
@@ -45,7 +45,7 @@ export const CacaoButton = ({}) => {
   return (
     <View style={styles.cacaoContainer}>
       <Image
-        source={require("../assets/images/cacaotree.png")}
+        source={require("../../assets/images/cacaotree.png")}
         style={styles.cacaoTree}
       />
       <Text
@@ -71,7 +71,7 @@ export const CacaoCounter = ({ cacaoAmount }) => {
   return (
     <View style={styles.cacaoCounter}>
       <Image
-        source={require("../assets/images/cacao-regular.png")}
+        source={require("../../assets/images/cacao-regular.png")}
         style={styles.cacaoCounterImage}
       />
       <Text style={styles.cookieCounterText}>{cacaoAmount}</Text>
@@ -118,7 +118,7 @@ const UpgradeCacaoButton = ({ setCacaoLevel, cacaoLevel }) => {
               " cookies",
         ]}
       </Text>
-      <Text style={styles.cacaoTreeUpgradeText} onPress={() => resetCacaoLevel(setCacaoLevel)}>Test Reset</Text>
+      {/* <Text style={styles.cacaoTreeUpgradeText} onPress={() => resetCacaoLevel(setCacaoLevel)}>Test Reset</Text> */}
     </View>
   );
 };

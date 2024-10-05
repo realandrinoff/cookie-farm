@@ -1,5 +1,5 @@
 import { View, Text } from "react-native";
-import { styles } from "../assets/Styles";
+import { styles } from "../../assets/Styles";
 import React from "react";
 
 export const CookieOptions = ({
@@ -15,7 +15,7 @@ export const CookieOptions = ({
             typeOfCookie == "regular"
               ? styles.cookieTypeSelected
               : styles.cookieTypeNotSelected,
-            styles.cookieTypeBOTH,
+            styles.cookieTypeALL,
           ]}
           onPress={() => {
             setTypeOfCookie("regular");
@@ -29,7 +29,7 @@ export const CookieOptions = ({
             typeOfCookie == "chocolatechip"
               ? styles.cookieTypeSelected
               : styles.cookieTypeNotSelected,
-            styles.cookieTypeBOTH,
+            styles.cookieTypeALL,
           ]}
           onPress={() => {
             setTypeOfCookie("chocolatechip");
@@ -40,7 +40,7 @@ export const CookieOptions = ({
         <Text
         style = {[
           typeOfCookie == "buttercup" ? styles.cookieTypeSelected : styles.cookieTypeNotSelected,
-          styles.cookieTypeBOTH
+          styles.cookieTypeALL
         ]}
         onPress = {() => {
           setTypeOfCookie("buttercup")

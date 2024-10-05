@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { ShopOfferWindow } from "../shop/Elements/shopOffers";
 
 export const styles = StyleSheet.create({
   bodyContainer: {
@@ -58,9 +59,6 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     alignContent: "center",
   },
-  shopOffer: {},
-  shopOfferText: {},
-
   TimerView: {
     display: "flex",
     justifyContent: "center",
@@ -105,13 +103,13 @@ export const styles = StyleSheet.create({
   cookieSelector: {
     alignItems: "center",
     display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-around",
+    flexDirection: "column",
+    // justifyContent: "space-around", 
   },
-  cookieTypeBOTH: {
+  cookieTypeALL: {
     textAlign: "center",
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
     justifyContent: "center",
     fontSize: 30,
     fontFamily: "papyrus",
@@ -192,5 +190,36 @@ export const styles = StyleSheet.create({
     alignContent: "center",
     height: 25,
     width: 25,
-  }
+  },
+  shopOfferContainer: {
+    marginTop: 100,
+    // marginLeft: 30,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    borderColor: "#000",
+    borderRadius: 20,
+    width: 200,
+    height: 200,
+  },
+  shopOfferText: {
+    fontFamily: "papyrus",
+    fontSize: 30,
+    textAlign: "center",
+  },
+  shopOfferPreviewImage: {
+    alignSelf: "center",
+    width: 100,
+    height: 100,
+  },
+  shopOffersContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+  },
+  buyButton: {
+    fontFamily: "papyrus",
+    fontSize: 20,
+    textAlign: "center",
+  },
 });
