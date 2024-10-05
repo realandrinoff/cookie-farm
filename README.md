@@ -12,7 +12,7 @@ My first goal was just to learn something new, then I really liked the idea and 
 * A template and example of usage of React Native for people who look for a code to check out (if you have any questions regarding the code @andrinoff on all social media)
 
 
-## Created by andrinoff (Andrey Smirnoff) using:
+## Made by andrinoff (Andrey Smirnoff) using:
 
 * Expo
 * React Native
