@@ -125,6 +125,9 @@ export const styles = StyleSheet.create({
   cookieTypeNotSelected: {
     borderWidth: 0,
   },
+  cookieTypeNotAcquired: {
+    color: "gray"
+  },
   cacaoCounter: {},
   cacaoCounterText: {
     fontFamily: "papyrus",
@@ -193,7 +196,6 @@ export const styles = StyleSheet.create({
   },
   shopOfferContainer: {
     marginTop: 100,
-    // marginLeft: 30,
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -215,11 +217,16 @@ export const styles = StyleSheet.create({
   shopOffersContainer: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "center",
   },
   buyButton: {
     fontFamily: "papyrus",
     fontSize: 20,
     textAlign: "center",
   },
+  testButtons: {
+    display: "flex",
+    alignSelf: "center",
+  },
+
 });

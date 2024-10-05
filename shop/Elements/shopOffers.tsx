@@ -13,46 +13,47 @@ import React from "react";
 import { prices } from "../maps/cookieTypePrice";
 import { CookieContext, CookieDispatchContext } from "../../app/cookieContext";
 
-export const ShopOfferWindow = ({ typeOfCookie }) => {
-  const [hasChocolateChip, setHasChocolateChip] = useState<boolean>(false);
-  const [hasButtercup, setHasButtercup] = useState<boolean>(false);
+export const ShopOfferWindow = ({
+  typeOfCookie,
+  setHasButtercup,
+  setHasChocolateChip,
+  hasButtercup,
+  hasChocolateChip,
+}) => {
   const cookieAmount = useContext(CookieContext);
   const dispatch = useContext(CookieDispatchContext);
 
-  useEffect(() => {
-    (async () => {
-      setHasButtercup(await checkTypesButtercup());
-      setHasChocolateChip(await checkTypesChocolateChip());
-    })();
-  });
   return (
-    <><TestElements
-      setHasButtercup={setHasButtercup}
-      setHasChocolateChip={setHasChocolateChip} />
+    <>
       <View
-        style={typeOfCookie == "chocolatechip"
-          ? hasChocolateChip
-            ? styles.HIDDEN
-            : styles.shopOfferContainer
-          : typeOfCookie == "buttercup"
+        style={
+          typeOfCookie == "chocolatechip"
+            ? hasChocolateChip
+              ? styles.HIDDEN
+              : styles.shopOfferContainer
+            : typeOfCookie == "buttercup"
             ? hasButtercup
               ? styles.HIDDEN
               : styles.shopOfferContainer
-            : styles.HIDDEN}
+            : styles.HIDDEN
+        }
       >
         <Image
           style={styles.shopOfferPreviewImage}
-          source={typeOfCookie == "buttercup"
-            ? require("../../assets/images/buttercup-cookie.png")
-            : typeOfCookie == "chocolatechip"
+          source={
+            typeOfCookie == "buttercup"
+              ? require("../../assets/images/buttercup-cookie.png")
+              : typeOfCookie == "chocolatechip"
               ? require("../../assets/images/chocolate-chip-cookie.png")
-              : require("../../assets/images/no-image.png")} />
+              : require("../../assets/images/no-image.png")
+          }
+        />
         <Text style={styles.shopOfferText}>
           {typeOfCookie == "chocolatechip"
             ? "Chocolate Chip Cookie"
             : typeOfCookie == "buttercup"
-              ? "Butterscotch Cup Cookie"
-              : "unknown type"}
+            ? "Butterscotch Cup Cookie"
+            : "unknown type"}
         </Text>
         <Text
           style={styles.buyButton}
@@ -64,15 +65,21 @@ export const ShopOfferWindow = ({ typeOfCookie }) => {
                   await addTypesChocolateChip();
                 })();
               }
+              if (typeOfCookie == "buttercup") {
+                setHasButtercup(true);
+                (async () => {
+                  await addTypesButtercup();
+                })();
+              }
             }
-          } }
+          }}
         >
           {cookieAmount >= prices.get(typeOfCookie)
             ? "BUY FOR " + prices.get(typeOfCookie)
-            : "You don't have enough cookies"}
+            : "You don't have enough cookies " +"(" + prices.get(typeOfCookie) + ")"}
         </Text>
-
-      </View></>
+      </View>
+    </>
   );
 };
 
@@ -80,7 +87,7 @@ export const ShopOfferWindow = ({ typeOfCookie }) => {
 
 export const TestElements = ({ setHasButtercup, setHasChocolateChip }) => {
   return (
-    <View>
+    <View style = {styles.testButtons}>
       <Text
         onPress={() => {
           (async () => {
@@ -104,6 +111,46 @@ export const TestElements = ({ setHasButtercup, setHasChocolateChip }) => {
         }}
       >
         ADD ALL TYPES
+      </Text>
+      <Text
+        onPress={() => {
+          (async () => {
+            setHasButtercup(false);
+            await deleteTypesButtercup();
+          })();
+        }}
+      >
+        DELETE BUTTERCUP
+      </Text>
+      <Text
+        onPress={() => {
+          (async () => {
+            setHasButtercup(true);
+            await addTypesButtercup();
+          })();
+        }}
+      >
+        ADD BUTTERCUP
+      </Text>
+      <Text
+        onPress={() => {
+          (async () => {
+            setHasChocolateChip(false);
+            await deleteTypesChocolateChip();
+          })();
+        }}
+      >
+        DELETE CHOCOLATE CHIP
+      </Text>
+      <Text
+        onPress={() => {
+          (async () => {
+            setHasChocolateChip(true);
+            await addTypesChocolateChip();
+          })();
+        }}
+      >
+        ADD CHOCOLATE CHIP
       </Text>
     </View>
   );

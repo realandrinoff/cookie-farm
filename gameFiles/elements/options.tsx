@@ -6,6 +6,8 @@ export const CookieOptions = ({
   hideOptions,
   typeOfCookie,
   setTypeOfCookie,
+  hasButtercup,
+  hasChocolateChip,
 }) => {
   return (
     <>
@@ -32,21 +34,31 @@ export const CookieOptions = ({
             styles.cookieTypeALL,
           ]}
           onPress={() => {
-            setTypeOfCookie("chocolatechip");
+            if (hasChocolateChip) {
+              setTypeOfCookie("chocolatechip");
+            } else {
+              return;
+            }
           }}
         >
           CHOCOLATE CHIP
         </Text>
         <Text
-        style = {[
-          typeOfCookie == "buttercup" ? styles.cookieTypeSelected : styles.cookieTypeNotSelected,
-          styles.cookieTypeALL
-        ]}
-        onPress = {() => {
-          setTypeOfCookie("buttercup")
-        }
-        }>
-            Butterscotch Cup
+          style={[
+            typeOfCookie == "buttercup"
+              ? styles.cookieTypeSelected
+              : styles.cookieTypeNotSelected,
+            styles.cookieTypeALL,
+          ]}
+          onPress={() => {
+            if (hasButtercup) {
+              setTypeOfCookie("buttercup");
+            } else {
+              return;
+            }
+          }}
+        >
+          BUTTERSCOTCH CUP
         </Text>
       </View>
     </>

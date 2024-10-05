@@ -40,7 +40,7 @@ export const BakingTimer = ({
 
   const peanutPrice = PeanutRequirements.get(typeOfCookie);
 
-  const [isEnough, setIsEnough] = useState<boolean>(true);
+
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -79,12 +79,12 @@ export const BakingTimer = ({
               setTimeLeft(seconds);
               setIsPressed(true);
               setHideOptions(true);
-              setIsEnough(true);
+
             } else {
-              setIsEnough(false);
+
             }
           } else {
-            setIsEnough(false);
+;
           }
         }}
         style={[
@@ -92,16 +92,18 @@ export const BakingTimer = ({
           isPressed ? styles.emptystyle : styles.HIDDEN,
         ]}
       >
-        {isEnough
-          ? "Bake " +
-            (typeOfCookie == "chocolatechip"
-              ? "Chocolate Chip "
-              : typeOfCookie == "regular"
-              ? "Regular "
-              : typeOfCookie == "buttercup"
-              ? "Butterscotch Cup "
-              : "Not known ") +
-            "cookie"
+        {cacaoCount >= cacaoPrice
+          ? peanutCount >= peanutPrice
+            ? "Bake " +
+              (typeOfCookie == "chocolatechip"
+                ? "Chocolate Chip "
+                : typeOfCookie == "regular"
+                ? "Regular "
+                : typeOfCookie == "buttercup"
+                ? "Butterscotch Cup "
+                : "Not known ") +
+              "cookie"
+            : "You don't have enough materials"
           : "You don't have enough materials"}
       </Text>
 
@@ -140,8 +142,8 @@ export const BakingTimer = ({
         ]}{" "}
         cookie
       </Text>
-
-      <Text
+// tests
+      {/* <Text
         onPress={() => {
           dispatch({
             type: "add",
@@ -151,6 +153,16 @@ export const BakingTimer = ({
       >
         TEST
       </Text>
+      <Text
+        onPress={() => {
+          dispatch({
+            type: "remove",
+            value: 10,
+          });
+        }}
+      >
+        Test 2
+      </Text> */}
     </View>
   );
 };
