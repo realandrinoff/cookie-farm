@@ -142,8 +142,8 @@ export const BakingTimer = ({
         ]}{" "}
         cookie
       </Text>
-// tests
-      {/* <Text
+{/* tests */}
+      <Text
         onPress={() => {
           dispatch({
             type: "add",
@@ -162,7 +162,7 @@ export const BakingTimer = ({
         }}
       >
         Test 2
-      </Text> */}
+      </Text>
     </View>
   );
 };

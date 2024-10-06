@@ -128,6 +128,9 @@ export const styles = StyleSheet.create({
   cookieTypeNotAcquired: {
     color: "gray"
   },
+  cookieTypeAcquired: {
+    color: "black"
+  },
   cacaoCounter: {},
   cacaoCounterText: {
     fontFamily: "papyrus",

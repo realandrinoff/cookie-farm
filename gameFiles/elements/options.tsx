@@ -32,6 +32,7 @@ export const CookieOptions = ({
               ? styles.cookieTypeSelected
               : styles.cookieTypeNotSelected,
             styles.cookieTypeALL,
+            hasChocolateChip  ? styles.cookieTypeAcquired : styles.cookieTypeNotAcquired
           ]}
           onPress={() => {
             if (hasChocolateChip) {
@@ -49,6 +50,7 @@ export const CookieOptions = ({
               ? styles.cookieTypeSelected
               : styles.cookieTypeNotSelected,
             styles.cookieTypeALL,
+            hasButtercup ? styles.cookieTypeAcquired : styles.cookieTypeNotAcquired
           ]}
           onPress={() => {
             if (hasButtercup) {

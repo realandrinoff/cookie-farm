@@ -6,38 +6,27 @@ import {
   checkTypesButtercup,
   checkTypesChocolateChip,
 } from "../../shop/data/shopData";
+import { hasButtercup } from "../../hooks/hasButtercup";
+import { hasChocolateChip } from "../../hooks/hasChocolateChipHook";
 
 export default function shopScreen() {
-  const [hasChocolateChip, setHasChocolateChip] = useState<boolean>(false);
-  const [hasButtercup, setHasButtercup] = useState<boolean>(false);
-  useEffect(() => {
-    (async () => {
-      setHasButtercup(await checkTypesButtercup());
-      setHasChocolateChip(await checkTypesChocolateChip());
-    })();
-  });
+
+
   return (
     <View style={styles.bodyContainer}>
       <Text style={styles.tabName}>Shop</Text>
-      // tests
-      {/* <TestElements
-        setHasButtercup={setHasButtercup}
-        setHasChocolateChip={setHasChocolateChip}
-      /> */}
+      {/* tests */}
+      <TestElements
+      />
       <View style={styles.shopOffersContainer}>
         <ShopOfferWindow
-          typeOfCookie={"chocolatechip"}
-          hasButtercup={hasButtercup}
-          hasChocolateChip={hasChocolateChip}
-          setHasButtercup={setHasButtercup}
-          setHasChocolateChip={setHasButtercup}
-        />
+          hasButtercup={hasButtercup()}
+          typeOfCookie={"chocolatechip"} hasChocolateChip={hasChocolateChip()}        />
         <ShopOfferWindow
           typeOfCookie={"buttercup"}
-          hasButtercup={hasButtercup}
-          hasChocolateChip={hasChocolateChip}
-          setHasButtercup={setHasButtercup}
-          setHasChocolateChip={setHasButtercup}
+          hasButtercup={hasButtercup()}
+          hasChocolateChip={hasChocolateChip()}
+        
         />
       </View>
     </View>

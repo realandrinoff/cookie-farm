@@ -12,27 +12,31 @@ import { styles } from "../../assets/Styles";
 import React from "react";
 import { prices } from "../maps/cookieTypePrice";
 import { CookieContext, CookieDispatchContext } from "../../app/cookieContext";
+import { hasChocolateChip } from "../../hooks/hasChocolateChipHook";
+import { hasButtercup } from "../../hooks/hasButtercup";
 
-export const ShopOfferWindow = ({
-  typeOfCookie,
-  setHasButtercup,
-  setHasChocolateChip,
-  hasButtercup,
-  hasChocolateChip,
-}) => {
+export const ShopOfferWindow = ({ typeOfCookie, hasButtercup, hasChocolateChip }) => {
   const cookieAmount = useContext(CookieContext);
   const dispatch = useContext(CookieDispatchContext);
-
+  const [bought, setBought] = useState(false);
+  if (typeOfCookie == "chocolatechip"){
+    (async() => {
+      setBought(await checkTypesChocolateChip())})()
+  }
+  if (typeOfCookie == "buttercup"){
+    (async() => {
+      setBought(await checkTypesButtercup())})()
+  }
   return (
     <>
       <View
         style={
           typeOfCookie == "chocolatechip"
-            ? hasChocolateChip
+            ? bought
               ? styles.HIDDEN
               : styles.shopOfferContainer
             : typeOfCookie == "buttercup"
-            ? hasButtercup
+            ? bought
               ? styles.HIDDEN
               : styles.shopOfferContainer
             : styles.HIDDEN
@@ -60,23 +64,33 @@ export const ShopOfferWindow = ({
           onPress={() => {
             if (cookieAmount >= Number(prices.get(typeOfCookie))) {
               if (typeOfCookie == "chocolatechip") {
-                setHasChocolateChip(true);
+                dispatch({
+                  type: "remove",
+                  value: prices.get(typeOfCookie),
+                });
                 (async () => {
                   await addTypesChocolateChip();
                 })();
               }
               if (typeOfCookie == "buttercup") {
-                setHasButtercup(true);
+                dispatch({
+                  type: "remove",
+                  value: prices.get(typeOfCookie),
+                });
                 (async () => {
                   await addTypesButtercup();
                 })();
               }
+              setBought(true)
             }
           }}
         >
           {cookieAmount >= prices.get(typeOfCookie)
             ? "BUY FOR " + prices.get(typeOfCookie)
-            : "You don't have enough cookies " +"(" + prices.get(typeOfCookie) + ")"}
+            : "You don't have enough cookies " +
+              "(" +
+              prices.get(typeOfCookie) +
+              ")"}
         </Text>
       </View>
     </>
@@ -85,16 +99,16 @@ export const ShopOfferWindow = ({
 
 // For test purposes
 
-export const TestElements = ({ setHasButtercup, setHasChocolateChip }) => {
+export const TestElements = ({}) => {
   return (
-    <View style = {styles.testButtons}>
+    <View style={styles.testButtons}>
       <Text
         onPress={() => {
           (async () => {
-            setHasButtercup(false);
-            setHasChocolateChip(false);
             await deleteTypesButtercup();
             await deleteTypesChocolateChip();
+            // hasButtercup();
+            // hasChocolateChip();
           })();
         }}
       >
@@ -103,10 +117,10 @@ export const TestElements = ({ setHasButtercup, setHasChocolateChip }) => {
       <Text
         onPress={() => {
           (async () => {
-            setHasButtercup(true);
-            setHasChocolateChip(true);
             await addTypesButtercup();
             await addTypesChocolateChip();
+            // hasButtercup();
+            // hasChocolateChip();
           })();
         }}
       >
@@ -115,8 +129,8 @@ export const TestElements = ({ setHasButtercup, setHasChocolateChip }) => {
       <Text
         onPress={() => {
           (async () => {
-            setHasButtercup(false);
             await deleteTypesButtercup();
+            // hasButtercup();
           })();
         }}
       >
@@ -125,8 +139,8 @@ export const TestElements = ({ setHasButtercup, setHasChocolateChip }) => {
       <Text
         onPress={() => {
           (async () => {
-            setHasButtercup(true);
             await addTypesButtercup();
+            // hasButtercup();
           })();
         }}
       >
@@ -135,8 +149,8 @@ export const TestElements = ({ setHasButtercup, setHasChocolateChip }) => {
       <Text
         onPress={() => {
           (async () => {
-            setHasChocolateChip(false);
             await deleteTypesChocolateChip();
+            // hasChocolateChip();
           })();
         }}
       >
@@ -145,8 +159,8 @@ export const TestElements = ({ setHasButtercup, setHasChocolateChip }) => {
       <Text
         onPress={() => {
           (async () => {
-            setHasChocolateChip(true);
             await addTypesChocolateChip();
+
           })();
         }}
       >
