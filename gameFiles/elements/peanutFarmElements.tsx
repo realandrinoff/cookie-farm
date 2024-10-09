@@ -4,13 +4,13 @@ import {
   increasePeanutLevel,
   resetPeanutLevel,
 } from "../../dataManagement/peanutData";
-import { CacaoDispatchContext } from "../../app/cacaoContext";
+import { CacaoDispatchContext } from "../../app/context/cacaoContext";
 import { useContext, useEffect, useState } from "react";
 import React from "react";
 import { checkPeanutLevel } from "../../dataManagement/peanutData";
-import { CookieDispatchContext, CookieContext } from "../../app/cookieContext";
+import { CookieDispatchContext, CookieContext } from "../../app/context/cookieContext";
 import { PeanutUpgradePrice } from "../maps/UpgradePriceMap";
-import { PeanutDispatchContext } from "../../app/peanutContext";
+import { PeanutDispatchContext } from "../../app/context/peanutContext";
 
 export const PeanutFarmLevel = ({}) => {
   var [peanutLevel, setPeanutLevel] = useState<number>();

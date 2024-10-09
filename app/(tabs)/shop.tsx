@@ -8,6 +8,7 @@ import {
 } from "../../shop/data/shopData";
 import { hasButtercup } from "../../hooks/hasButtercup";
 import { hasChocolateChip } from "../../hooks/hasChocolateChipHook";
+import { CacaoExchange, PeanutExchange } from "../../shop/Elements/cookieExchange";
 
 export default function shopScreen() {
 
@@ -16,8 +17,8 @@ export default function shopScreen() {
     <View style={styles.bodyContainer}>
       <Text style={styles.tabName}>Shop</Text>
       {/* tests */}
-      <TestElements
-      />
+      {/* <TestElements
+      /> */}
       <View style={styles.shopOffersContainer}>
         <ShopOfferWindow
           hasButtercup={hasButtercup()}
@@ -28,6 +29,12 @@ export default function shopScreen() {
           hasChocolateChip={hasChocolateChip()}
         
         />
+      </View>
+      <Text style = {styles.exchangeContainerText}>Exchange</Text>
+      <View style = {styles.exchangeContainer}>
+        
+        <CacaoExchange />
+        <PeanutExchange />
       </View>
     </View>
   );

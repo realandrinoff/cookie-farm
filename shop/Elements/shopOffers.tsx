@@ -11,7 +11,7 @@ import { View, Text, Image } from "react-native";
 import { styles } from "../../assets/Styles";
 import React from "react";
 import { prices } from "../maps/cookieTypePrice";
-import { CookieContext, CookieDispatchContext } from "../../app/cookieContext";
+import { CookieContext, CookieDispatchContext } from "../../app/context/cookieContext";
 import { hasChocolateChip } from "../../hooks/hasChocolateChipHook";
 import { hasButtercup } from "../../hooks/hasButtercup";
 

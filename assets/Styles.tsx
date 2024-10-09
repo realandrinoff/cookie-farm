@@ -32,6 +32,7 @@ export const styles = StyleSheet.create({
     elevation: 2,
   },
   tabBarIcon: {
+    marginTop: 20,
     height: 50,
     width: 50,
   },
@@ -101,10 +102,16 @@ export const styles = StyleSheet.create({
     textAlignVertical: "center",
   },
   cookieSelector: {
-    alignItems: "center",
+    borderColor: "#000",
+    borderWidth: 2,
+    borderRadius: 20,
+    backgroundColor: "#f1efe9",
+    // width: 100,
+    padding: 20,
+    alignSelf: "center",
     display: "flex",
     flexDirection: "column",
-    // justifyContent: "space-around", 
+    // justifyContent: "space-around",
   },
   cookieTypeALL: {
     textAlign: "center",
@@ -116,20 +123,20 @@ export const styles = StyleSheet.create({
   },
   cookieTypeSelected: {
     overflow: "hidden",
-    borderColor: "orange",
+    borderColor: "#D8D2C2",
     fontWeight: 500,
     borderWidth: 5,
-    height: 50,
+    // height: 50,
     borderRadius: 20,
   },
   cookieTypeNotSelected: {
     borderWidth: 0,
   },
   cookieTypeNotAcquired: {
-    color: "gray"
+    color: "gray",
   },
   cookieTypeAcquired: {
-    color: "black"
+    color: "black",
   },
   cacaoCounter: {},
   cacaoCounterText: {
@@ -177,11 +184,10 @@ export const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: "papyrus",
     textAlign: "center",
-
   },
   cacaoTreeUpgradeContainer: {
     display: "flex",
-    justifyContent: 'center',
+    justifyContent: "center",
     flexDirection: "column",
     alignItems: "center",
     marginTop: 50,
@@ -190,7 +196,6 @@ export const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: "papyrus",
     textAlign: "center",
-
   },
   requirementsIcons: {
     alignContent: "center",
@@ -198,7 +203,6 @@ export const styles = StyleSheet.create({
     width: 25,
   },
   shopOfferContainer: {
-    marginTop: 100,
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
@@ -231,5 +235,49 @@ export const styles = StyleSheet.create({
     display: "flex",
     alignSelf: "center",
   },
-
+  requirementsContainer: {
+    marginTop: 20,
+  },
+  bakeryTests: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  levelCounter: {
+    fontFamily: "papyrus",
+    textAlign: "center",
+    fontSize: 100,
+  },
+  toNextLevelCounter: {
+    fontFamily: "papyrus",
+    textAlign: "center",
+    fontSize: 30,
+  },
+  lockedContainer: {
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  lockedIcon: {
+    alignSelf: "center",
+    height: 100,
+    width: 100,
+    marginBottom: 20,
+  },
+  lockedText: {
+    fontSize: 30,
+    fontFamily: "papyrus",
+    textAlign: "center",
+  },
+  exchangeContainerText: {
+    marginTop: 50,
+    fontSize: 50,
+    fontFamily: "papyrus",
+    textAlign: "center",
+  },
+  exchangeContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
 });

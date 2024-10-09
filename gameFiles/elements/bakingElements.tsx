@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { View, Text, Image } from "react-native";
 import { styles } from "../../assets/Styles";
-import { CookieContext, CookieDispatchContext } from "../../app/cookieContext";
+import { CookieContext, CookieDispatchContext } from "../../app/context/cookieContext";
 import { CookieBakingTimeMap, CookieValueMap } from "../maps/CookieMap";
 import {
   CacaoRequirements,
   PeanutRequirements,
 } from "../maps/TypeCookiesRequirements";
-import { CacaoContext, CacaoDispatchContext } from "../../app/cacaoContext";
-import { PeanutContext, PeanutDispatchContext } from "../../app/peanutContext";
+import { CacaoContext, CacaoDispatchContext } from "../../app/context/cacaoContext";
+import { PeanutContext, PeanutDispatchContext } from "../../app/context/peanutContext";
+import { CookiesBakedDispatchContext } from "../../levelSystem/data/context/cookiesBakedContext";
 
 export type cookieTimerType = {
   seconds: number;
@@ -27,6 +28,8 @@ export const BakingTimer = ({
 }: cookieTimerType) => {
   const dispatch = useContext(CookieDispatchContext);
   const cookieCount = useContext(CookieContext);
+  const dispatchCookiesBaked = useContext(CookiesBakedDispatchContext);
+
   var [isDone, setIsDone] = useState(false);
   var [timeLeft, setTimeLeft] = useState(NaN);
   var [isPressed, setIsPressed] = useState(true);
@@ -40,16 +43,12 @@ export const BakingTimer = ({
 
   const peanutPrice = PeanutRequirements.get(typeOfCookie);
 
-
-
   useEffect(() => {
     const timer = setInterval(() => {
       if (timeLeft > 0) {
         setTimeLeft(timeLeft - 1);
-        console.log("Time left", timeLeft);
       } else if (Number.isNaN(timeLeft)) {
       } else {
-        console.log("Time's up!");
         setTimeLeft(0);
         clearInterval(timer);
         setIsDone(true);
@@ -79,12 +78,9 @@ export const BakingTimer = ({
               setTimeLeft(seconds);
               setIsPressed(true);
               setHideOptions(true);
-
             } else {
-
             }
           } else {
-;
           }
         }}
         style={[
@@ -121,6 +117,10 @@ export const BakingTimer = ({
           isPressed ? styles.HIDDEN : styles.emptystyle,
         ]}
         onPress={() => {
+          dispatchCookiesBaked({
+            type: "add",
+            value: 1,
+          });
           dispatch({
             type: "add",
             value: CookieValueMap.get(typeOfCookie),
@@ -142,7 +142,8 @@ export const BakingTimer = ({
         ]}{" "}
         cookie
       </Text>
-{/* tests */}
+      {/* tests */}
+      <View style = {styles.bakeryTests}>
       <Text
         onPress={() => {
           dispatch({
@@ -151,7 +152,7 @@ export const BakingTimer = ({
           });
         }}
       >
-        TEST
+        +100 cookies
       </Text>
       <Text
         onPress={() => {
@@ -161,15 +162,35 @@ export const BakingTimer = ({
           });
         }}
       >
-        Test 2
+        -10 cookies
       </Text>
+      <Text
+        onPress={() => {
+          dispatchCookiesBaked({
+            type: "add",
+            value: 10,
+          });
+        }}
+      >
+        +10 cookies baked
+      </Text>
+      <Text
+      onPress={
+        () => {
+          dispatchCookiesBaked({
+            type: "reset",
+            value: 0
+          })
+        }
+      }>reset cookies baked</Text>
+      </View>
     </View>
   );
 };
 
 export const CookieRequirements = ({ typeOfCookie }) => {
   return (
-    <View>
+    <View style={styles.requirementsContainer}>
       <Text style={styles.requirementsText}>
         Requirements: {CacaoRequirements.get(typeOfCookie)}{" "}
         <Image

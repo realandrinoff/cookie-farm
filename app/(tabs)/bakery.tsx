@@ -1,7 +1,7 @@
 import { View, Text, Button } from "react-native";
 import { useContext, useEffect, useState } from "react";
 import { styles } from "../../assets/Styles";
-import { CookieContext, CookieDispatchContext } from "../cookieContext";
+import { CookieContext, CookieDispatchContext } from "../context/cookieContext";
 import { hasButtercup } from "../../hooks/hasButtercup";
 import { hasChocolateChip } from "../../hooks/hasChocolateChipHook";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -20,7 +20,7 @@ export default function bakeryScreen() {
   const dispatch = useContext(CookieDispatchContext);
   const cookieCount = useContext(CookieContext);
   var [hideOptions, setHideOptions] = useState(false);
- 
+  
 
 
   return (

@@ -4,11 +4,11 @@ import {
   increaseCacaoLevel,
   resetCacaoLevel,
 } from "../../dataManagement/cacaoData";
-import { CacaoDispatchContext } from "../../app/cacaoContext";
+import { CacaoDispatchContext } from "../../app/context/cacaoContext";
 import { useContext, useEffect, useState } from "react";
 import React from "react";
 import { checkCacaoLevel } from "../../dataManagement/cacaoData";
-import { CookieDispatchContext, CookieContext } from "../../app/cookieContext";
+import { CookieDispatchContext, CookieContext } from "../../app/context/cookieContext";
 import { CacaoUpgradePrice } from "../maps/UpgradePriceMap";
 
 export const CacaoFarmLevel = ({}) => {
@@ -21,7 +21,7 @@ export const CacaoFarmLevel = ({}) => {
   if (Platform.OS != "web") {
     return (
       <View>
-        <Text style={styles.cacaoTreeUpgradeText}>cacao level: {cacaoLevel}</Text>
+        <Text style={styles.cacaoTreeUpgradeText}>Cacao level: {cacaoLevel}</Text>
         <UpgradeCacaoButton
           setCacaoLevel={setCacaoLevel}
           cacaoLevel={cacaoLevel}
@@ -37,7 +37,6 @@ export const CacaoButton = ({}) => {
   const [cacaoLevel, setCacaoLevel] = useState<number>();
   useEffect(() => {
     (async () => {
-      console.log("inside async");
       await checkCacaoLevel(setCacaoLevel);
     })();
   });
@@ -61,7 +60,7 @@ export const CacaoButton = ({}) => {
           });
         }}
       >
-        collect cacao
+        Collect cacao
       </Text>
     </View>
   );
@@ -118,7 +117,7 @@ const UpgradeCacaoButton = ({ setCacaoLevel, cacaoLevel }) => {
               " cookies",
         ]}
       </Text>
-      {/* <Text style={styles.cacaoTreeUpgradeText} onPress={() => resetCacaoLevel(setCacaoLevel)}>Test Reset</Text> */}
+      <Text style={styles.cacaoTreeUpgradeText} onPress={() => resetCacaoLevel(setCacaoLevel)}>Test Reset</Text>
     </View>
   );
 };

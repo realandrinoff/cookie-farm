@@ -6,6 +6,6 @@ export const CacaoRequirements = new Map<string, number>([
 
 export const PeanutRequirements = new Map<string, number>([
     ["regular", 0],
-    ["chocolatechip", 20],
+    ["chocolatechip", 0],
     ["buttercup", 100],
 ])

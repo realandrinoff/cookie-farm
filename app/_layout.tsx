@@ -6,13 +6,17 @@ import React from "react";
 import { View, Text, Platform, Image } from "react-native";
 import { getCookies } from "../dataManagement/cookieData";
 import { styles } from "../assets/Styles";
-import { CookieContext, CookieDispatchContext } from "./cookieContext";
+import { CookieContext, CookieDispatchContext } from "./context/cookieContext";
 import { cookieReducer } from "../dataManagement/cookieData";
 import { CacaoCounter } from "../gameFiles/elements/cacaoBeanFarmElements";
 import { cacaoReducer, getCacaoAmount } from "../dataManagement/cacaoData";
-import { CacaoContext, CacaoDispatchContext } from "./cacaoContext";
+import { CacaoContext, CacaoDispatchContext } from "./context/cacaoContext";
 import { getPeanutAmount, peanutReducer } from "../dataManagement/peanutData";
-import { PeanutContext, PeanutDispatchContext } from "./peanutContext";
+import { PeanutContext, PeanutDispatchContext } from "./context/peanutContext";
+import { CheckLevel, levelReducer } from "../levelSystem/data/levelData";
+import { LevelContext, LevelDispatchContext } from "../levelSystem/data/context/levelContext";
+import { CheckCookiesBaked, cookiesBakedReducer } from "../levelSystem/data/cookiesBakedData";
+import { CookiesBakedContext, CookiesBakedDispatchContext } from "../levelSystem/data/context/cookiesBakedContext";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -51,14 +55,31 @@ const PeanutView = (props:PeanutViewProps) => {
   );
 };
 
-
 export default function RootLayout() {
   const isWeb: boolean = Platform.OS === "web";
   const [cookieCount, dispatch] = useReducer(cookieReducer, 0);
   const [cacaoCount, dispatchCacao] = useReducer(cacaoReducer, NaN);
   const [peanutCount, dispatchPeanut] = useReducer(peanutReducer, 0);
-
-
+  const [levelCount, dispatchLevel] = useReducer(levelReducer, 1);
+  const [cookiesBakedCount, dispatchCookiesBaked] = useReducer(cookiesBakedReducer, 0)
+  useEffect(() => {
+    (async () => {
+      dispatchLevel({
+        type: "initialize",
+        value: await CheckLevel(),
+      }
+      );
+    })();
+  }, []);
+  useEffect(() => {
+    (async () => {
+      dispatchCookiesBaked({
+        type: "initialize",
+        value: await CheckCookiesBaked(),
+      }
+      );
+    })();
+  }, []);
   useEffect(() => {
     (async () => {
       dispatchCacao({
@@ -100,6 +121,10 @@ export default function RootLayout() {
         <PeanutView isWeb={isWeb} peanutCount={peanutCount} />
         <CacaoCounter cacaoAmount={cacaoCount}></CacaoCounter>
         </View>
+        <CookiesBakedContext.Provider value={cookiesBakedCount}>
+        <CookiesBakedDispatchContext.Provider value={dispatchCookiesBaked}>
+        <LevelContext.Provider value={levelCount}>
+          <LevelDispatchContext.Provider value={dispatchLevel}>
         <CookieContext.Provider value={cookieCount}>
           <CookieDispatchContext.Provider value={dispatch}>
             <PeanutContext.Provider value={peanutCount}>
@@ -119,7 +144,10 @@ export default function RootLayout() {
             </PeanutContext.Provider>
           </CookieDispatchContext.Provider>
         </CookieContext.Provider>
-
+        </LevelDispatchContext.Provider>
+        </LevelContext.Provider>
+        </CookiesBakedDispatchContext.Provider>
+        </CookiesBakedContext.Provider>
       </>
     );
   }
