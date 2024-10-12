@@ -7,6 +7,13 @@ export const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
   },
+  mainLogo: {
+    marginTop: 180,
+    fontFamily: "papyrus",
+    fontSize: 70,
+    textAlign: "center"
+  },
+
   tabName: {
     fontStyle: "normal",
     fontFamily: "papyrus",
@@ -73,13 +80,13 @@ export const styles = StyleSheet.create({
     fontFamily: "papyrus",
     fontSize: 40,
     color: "#121212",
-    marginTop: 300,
+    top: 350,
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-end",
   },
   collectButton: {
-    marginTop: 300,
+    top: 350,
     overflow: "hidden",
     justifyContent: "center",
     textAlign: "center",
@@ -91,7 +98,7 @@ export const styles = StyleSheet.create({
   emptystyle: {},
   bakeButton: {
     overflow: "hidden",
-    marginTop: 300,
+    top: 200,
     display: "flex",
     justifyContent: "center",
     textAlign: "center",
@@ -171,7 +178,12 @@ export const styles = StyleSheet.create({
     fontFamily: "papyrus",
     textAlign: "center",
   },
+  allCountersParent: {
+    backgroundColor: "#D8D2C2",
+    height: 130,
+  },
   allCounters: {
+    
     marginTop: 50,
     height: 50,
     display: "flex",
@@ -243,6 +255,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
   },
   levelCounter: {
+    marginTop: 250,
     fontFamily: "papyrus",
     textAlign: "center",
     fontSize: 100,
@@ -279,5 +292,15 @@ export const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
+  },
+
+  resetButtonText: {
+    fontFamily: "papyrus",
+    borderColor: "red",
+    borderWidth: 3,
+    borderRadius: 20,
+    textAlign: "center",
+    fontSize: 40,
+    textAlignVertical: "center",
   },
 });

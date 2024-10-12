@@ -4,20 +4,33 @@ import {
   increaseCacaoLevel,
   resetCacaoLevel,
 } from "../../dataManagement/cacaoData";
-import { CacaoDispatchContext } from "../../app/context/cacaoContext";
+import { CacaoContext, CacaoDispatchContext } from "../../app/context/cacaoContext";
 import { useContext, useEffect, useState } from "react";
 import React from "react";
 import { checkCacaoLevel } from "../../dataManagement/cacaoData";
 import { CookieDispatchContext, CookieContext } from "../../app/context/cookieContext";
 import { CacaoUpgradePrice } from "../maps/UpgradePriceMap";
+import { LevelContext } from "../../levelSystem/data/context/levelContext";
 
 export const CacaoFarmLevel = ({}) => {
   var [cacaoLevel, setCacaoLevel] = useState<number>();
+  const levelCount = useContext(LevelContext)
   useEffect(() => {
-    (async () => {
-      setCacaoLevel(await checkCacaoLevel(setCacaoLevel));
-    })();
-  });
+    
+      if (levelCount < 2) {
+        
+        (async () => {
+          console.log("reset")
+        setCacaoLevel(1)
+        await resetCacaoLevel()})()
+      }
+      else{
+        (async () => {
+          console.log('not reset')
+        setCacaoLevel(await checkCacaoLevel(setCacaoLevel));})()
+      }
+    })
+
   if (Platform.OS != "web") {
     return (
       <View>
@@ -26,6 +39,7 @@ export const CacaoFarmLevel = ({}) => {
           setCacaoLevel={setCacaoLevel}
           cacaoLevel={cacaoLevel}
         />
+        <CacaoButton cacaoLevel={cacaoLevel} setCacaoLevel={setCacaoLevel} />
       </View>
     );
   } else {
@@ -33,8 +47,7 @@ export const CacaoFarmLevel = ({}) => {
   }
 };
 
-export const CacaoButton = ({}) => {
-  const [cacaoLevel, setCacaoLevel] = useState<number>();
+export const CacaoButton = ({cacaoLevel, setCacaoLevel}) => {
   useEffect(() => {
     (async () => {
       await checkCacaoLevel(setCacaoLevel);
@@ -117,7 +130,7 @@ const UpgradeCacaoButton = ({ setCacaoLevel, cacaoLevel }) => {
               " cookies",
         ]}
       </Text>
-      <Text style={styles.cacaoTreeUpgradeText} onPress={() => resetCacaoLevel(setCacaoLevel)}>Test Reset</Text>
+      {/* <Text style={styles.cacaoTreeUpgradeText} onPress={() => resetCacaoLevel(setCacaoLevel)}>Test Reset</Text> */}
     </View>
   );
 };

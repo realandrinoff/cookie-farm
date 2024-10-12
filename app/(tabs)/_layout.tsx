@@ -28,6 +28,34 @@ export default function TabLayout() {
           
         }}
       />
+            <Tabs.Screen
+        name="bakery"
+        options={{
+          title: '',
+          tabBarIcon: ({ focused, color, size }) => {
+            return (
+              <Image
+              source={focused ? require('../../assets/images/bakery-active.png') : require('../../assets/images/bakery-inactive.png')}
+                style={styles.tabBarIcon}
+              />
+            );
+          }
+        }}
+      />
+            <Tabs.Screen
+        name="shop"
+        options={{
+          title: '',
+          tabBarIcon: ({ focused, color, size }) => {
+            return (
+              <Image
+                source={focused ? require('../../assets/images/shop-active.png') : require('../../assets/images/shop-inactive.png')}
+                style={styles.tabBarIcon}
+              />
+            );
+          }
+        }}
+      />
       <Tabs.Screen
         name="cacaobeansfarm"
         options={{
@@ -57,34 +85,8 @@ export default function TabLayout() {
           }
         }}
       />
-      <Tabs.Screen
-        name="shop"
-        options={{
-          title: '',
-          tabBarIcon: ({ focused, color, size }) => {
-            return (
-              <Image
-                source={focused ? require('../../assets/images/shop-active.png') : require('../../assets/images/shop-inactive.png')}
-                style={styles.tabBarIcon}
-              />
-            );
-          }
-        }}
-      />
-      <Tabs.Screen
-        name="bakery"
-        options={{
-          title: '',
-          tabBarIcon: ({ focused, color, size }) => {
-            return (
-              <Image
-              source={focused ? require('../../assets/images/bakery-active.png') : require('../../assets/images/bakery-inactive.png')}
-                style={styles.tabBarIcon}
-              />
-            );
-          }
-        }}
-      />
+
+
       
        <Tabs.Screen
         name="settings"

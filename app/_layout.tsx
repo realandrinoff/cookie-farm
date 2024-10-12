@@ -116,10 +116,12 @@ export default function RootLayout() {
   } else {
     return (
       <>
+      <View style = {styles.allCountersParent}> 
         <View style={styles.allCounters}>
         <CookieView isWeb={isWeb} cookieCount={cookieCount} />
         <PeanutView isWeb={isWeb} peanutCount={peanutCount} />
         <CacaoCounter cacaoAmount={cacaoCount}></CacaoCounter>
+        </View>
         </View>
         <CookiesBakedContext.Provider value={cookiesBakedCount}>
         <CookiesBakedDispatchContext.Provider value={dispatchCookiesBaked}>

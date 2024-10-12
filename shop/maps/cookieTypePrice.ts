@@ -1,4 +1,4 @@
 export const prices = new Map<string, number>([
-    ["chocolatechip", 100],
-    ["buttercup", 200]
+    ["chocolatechip", 10],
+    ["buttercup", 100]
 ])

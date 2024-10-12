@@ -143,7 +143,7 @@ export const BakingTimer = ({
         cookie
       </Text>
       {/* tests */}
-      <View style = {styles.bakeryTests}>
+      <View style = {styles.HIDDEN}>
       <Text
         onPress={() => {
           dispatch({

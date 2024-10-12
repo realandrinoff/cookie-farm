@@ -11,14 +11,23 @@ import { checkPeanutLevel } from "../../dataManagement/peanutData";
 import { CookieDispatchContext, CookieContext } from "../../app/context/cookieContext";
 import { PeanutUpgradePrice } from "../maps/UpgradePriceMap";
 import { PeanutDispatchContext } from "../../app/context/peanutContext";
+import { LevelContext } from "../../levelSystem/data/context/levelContext";
 
 export const PeanutFarmLevel = ({}) => {
   var [peanutLevel, setPeanutLevel] = useState<number>();
+  const levelCount = useContext(LevelContext)
   useEffect(() => {
-    (async () => {
-      setPeanutLevel(await checkPeanutLevel(setPeanutLevel));
-    })();
-  });
+    
+      if (levelCount < 5) {
+        (async () => {
+        setPeanutLevel(1)
+        await resetPeanutLevel()})()
+      }
+      else{
+        (async () => {
+        setPeanutLevel(await checkPeanutLevel(setPeanutLevel));})
+      }
+    });
   if (Platform.OS != "web") {
     return (
       <View>

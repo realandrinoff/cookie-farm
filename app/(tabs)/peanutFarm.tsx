@@ -6,21 +6,17 @@ import { LevelContext } from "../../levelSystem/data/context/levelContext";
 
 export default function peanutScreen() {
   const levelCount = useContext(LevelContext);
-  if(levelCount < 5){
-    return (
-      <View style = {[styles.bodyContainer, styles.lockedContainer]}>
-      <Image style={styles.lockedIcon} source={require("../../assets/images/locked.png")}/>
-      <Text style ={styles.lockedText}>Peanut Farm unlocks on level 5...</Text>
+
+  return (
+      <><View style={levelCount < 5 ? [styles.bodyContainer, styles.lockedContainer]: styles.HIDDEN}>
+        <Image style={styles.lockedIcon} source={require("../../assets/images/locked.png")} />
+        <Text style={styles.lockedText}>Peanut Farm unlocks on level 5...</Text>
       </View>
+      <View style={levelCount>= 5 ? styles.bodyContainer : styles.HIDDEN}>
+          <Text style={styles.tabName}> Peanut Farm </Text>
+          <PeanutFarmLevel />
+          <PeanutButton />
+        </View></>
     )
   }
-  
-  else{
-    return (
-    <View style={styles.bodyContainer}>
-      <Text style={styles.tabName}> Peanut Farm </Text>
-      <PeanutFarmLevel />
-      <PeanutButton />
-    </View>
-  );}
-}
+

@@ -52,6 +52,12 @@ export function cookieReducer(
       }
         
   }
+    case "reset": {
+      (async() => {
+        await setCookies(0)
+      })()
+      return 0
+    }
     default: {
       throw Error("unknown action {action.type}");
     }

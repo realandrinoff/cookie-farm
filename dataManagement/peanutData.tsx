@@ -57,9 +57,8 @@ export const increasePeanutLevel = async () => {
 
 // for test purposes
 
-export const resetPeanutLevel = async (setPeanutLevel: React.Dispatch<number>) => {
+export const resetPeanutLevel = async () => {
   await AsyncStorage.setItem("peanutLevel", JSON.stringify(1));
-  setPeanutLevel(1);
   return 
 };
 
@@ -85,6 +84,12 @@ export function peanutReducer(peanutCount: number, action: peanutAction): number
         await setPeanut(newValue);
       })();
       return newValue;
+    }
+    case "reset": {
+      (async() => {
+        await setPeanut(0)
+      })()
+      return 0
     }
     default: {
       throw Error("unknown action {action.type}");

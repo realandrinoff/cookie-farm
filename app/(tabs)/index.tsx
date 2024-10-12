@@ -18,9 +18,10 @@ export default function homeScreen(){
     }
     return (
         <View style = {styles.bodyContainer}>
+        <Text style = {styles.mainLogo}>COOKIE FARM</Text>
         <Text style={styles.levelCounter}>Level: {levelCount}</Text>
         <Text style={styles.toNextLevelCounter}>To next level: {cookiesBakedCount} / {LevelMap.get(levelCount)}</Text>
-        <Text style={styles.testButtons} onPress={
+        {/* <Text style={styles.testButtons} onPress={
             () => {
                 dispatchLevel({
                     type: "add",
@@ -35,7 +36,7 @@ export default function homeScreen(){
                 type: "reset",
                 value: 1
             })
-        }}>reset level</Text>
+        }}>reset level</Text> */}
         </View>
     );
 }

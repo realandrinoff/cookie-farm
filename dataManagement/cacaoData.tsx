@@ -57,9 +57,8 @@ export const increaseCacaoLevel = async () => {
 
 // for test purposes
 
-export const resetCacaoLevel = async (setCacaoLevel: React.Dispatch<number>) => {
+export const resetCacaoLevel = async () => {
   await AsyncStorage.setItem("cacaoLevel", JSON.stringify(1));
-  setCacaoLevel(1);
   return 
 };
 
@@ -85,6 +84,12 @@ export function cacaoReducer(cacaoCount: number, action: cacaoAction): number {
         await setCacao(newValue);
       })();
       return newValue;
+    }
+    case "reset": {
+      (async() => {
+        await setCacao(0)
+      })();
+      return 0
     }
     default: {
       throw Error("unknown action {action.type}");
