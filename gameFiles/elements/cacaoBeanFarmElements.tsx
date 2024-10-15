@@ -4,50 +4,48 @@ import {
   increaseCacaoLevel,
   resetCacaoLevel,
 } from "../../dataManagement/cacaoData";
-import { CacaoContext, CacaoDispatchContext } from "../../app/context/cacaoContext";
+import {
+  CacaoContext,
+  CacaoDispatchContext,
+} from "../../app/context/cacaoContext";
 import { useContext, useEffect, useState } from "react";
 import React from "react";
 import { checkCacaoLevel } from "../../dataManagement/cacaoData";
-import { CookieDispatchContext, CookieContext } from "../../app/context/cookieContext";
+import {
+  CookieDispatchContext,
+  CookieContext,
+} from "../../app/context/cookieContext";
 import { CacaoUpgradePrice } from "../maps/UpgradePriceMap";
 import { LevelContext } from "../../levelSystem/data/context/levelContext";
 
 export const CacaoFarmLevel = ({}) => {
   var [cacaoLevel, setCacaoLevel] = useState<number>();
-  const levelCount = useContext(LevelContext)
+  const levelCount = useContext(LevelContext);
   useEffect(() => {
-    
-      if (levelCount < 2) {
-        
-        (async () => {
-          console.log("reset")
-        setCacaoLevel(1)
-        await resetCacaoLevel()})()
-      }
-      else{
-        (async () => {
-          console.log('not reset')
-        setCacaoLevel(await checkCacaoLevel(setCacaoLevel));})()
-      }
-    })
-
-  if (Platform.OS != "web") {
-    return (
-      <View>
-        <Text style={styles.cacaoTreeUpgradeText}>Cacao level: {cacaoLevel}</Text>
-        <UpgradeCacaoButton
-          setCacaoLevel={setCacaoLevel}
-          cacaoLevel={cacaoLevel}
-        />
-        <CacaoButton cacaoLevel={cacaoLevel} setCacaoLevel={setCacaoLevel} />
-      </View>
-    );
-  } else {
-    return null;
-  }
+    if (levelCount < 2) {
+      (async () => {
+        setCacaoLevel(1);
+        await resetCacaoLevel();
+      })();
+    } else {
+      (async () => {
+        setCacaoLevel(await checkCacaoLevel(setCacaoLevel));
+      })();
+    }
+  });
+  return (
+    <View>
+      <Text style={styles.cacaoTreeUpgradeText}>Cacao level: {cacaoLevel}</Text>
+      <UpgradeCacaoButton
+        setCacaoLevel={setCacaoLevel}
+        cacaoLevel={cacaoLevel}
+      />
+      <CacaoButton cacaoLevel={cacaoLevel} setCacaoLevel={setCacaoLevel} />
+    </View>
+  );
 };
 
-export const CacaoButton = ({cacaoLevel, setCacaoLevel}) => {
+export const CacaoButton = ({ cacaoLevel, setCacaoLevel }) => {
   useEffect(() => {
     (async () => {
       await checkCacaoLevel(setCacaoLevel);
@@ -66,7 +64,6 @@ export const CacaoButton = ({cacaoLevel, setCacaoLevel}) => {
           (async () => {
             setCacaoLevel(await checkCacaoLevel(setCacaoLevel));
           })();
-          console.log(cacaoLevel);
           dispatch({
             type: "add",
             value: cacaoLevel,
@@ -103,7 +100,6 @@ const UpgradeCacaoButton = ({ setCacaoLevel, cacaoLevel }) => {
         onPress={() => {
           if (cacaoLevel < 5) {
             if (cookieCount < CacaoUpgradePrice.get(cacaoLevel)) {
-              setNotEnough(true);
               return <Text>You don't have enough cookies</Text>;
             } else {
               setNotEnough(false);
@@ -123,6 +119,10 @@ const UpgradeCacaoButton = ({ setCacaoLevel, cacaoLevel }) => {
         {[
           cacaoLevel == 5
             ? "You have reached MAX level"
+            : CacaoUpgradePrice.get(cacaoLevel) > cookieCount
+            ? "You need " +
+              (CacaoUpgradePrice.get(cacaoLevel) - cookieCount) +
+              " more cookies " 
             : "Upgrade cacao level to " +
               (cacaoLevel + 1) +
               " for " +
@@ -130,7 +130,15 @@ const UpgradeCacaoButton = ({ setCacaoLevel, cacaoLevel }) => {
               " cookies",
         ]}
       </Text>
-      {/* <Text style={styles.cacaoTreeUpgradeText} onPress={() => resetCacaoLevel(setCacaoLevel)}>Test Reset</Text> */}
+      <Text
+        style={styles.cacaoTreeUpgradeText}
+        onPress={() => {
+          resetCacaoLevel();
+          setCacaoLevel(1);
+        }}
+      >
+        Test Reset
+      </Text>
     </View>
   );
 };

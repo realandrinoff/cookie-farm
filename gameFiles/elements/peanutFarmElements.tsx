@@ -25,29 +25,25 @@ export const PeanutFarmLevel = ({}) => {
       }
       else{
         (async () => {
-        setPeanutLevel(await checkPeanutLevel(setPeanutLevel));})
+        setPeanutLevel(await checkPeanutLevel(setPeanutLevel));})()
       }
     });
-  if (Platform.OS != "web") {
-    return (
-      <View>
-        <Text style={styles.cacaoTreeUpgradeText}>Peanut level: {peanutLevel}</Text>
-        <UpgradePeanutButton
-          setPeanutLevel={setPeanutLevel}
-          peanutLevel={peanutLevel}
-        />
-      </View>
-    );
-  } else {
-    return null;
-  }
+  return (
+    <View>
+      <Text style={styles.cacaoTreeUpgradeText}>Peanut level: {peanutLevel}</Text>
+      <UpgradePeanutButton
+        setPeanutLevel={setPeanutLevel}
+        peanutLevel={peanutLevel}
+      />
+    </View>
+  );
+
 };
 
 export const PeanutButton = ({}) => {
   const [peanutLevel, setPeanutLevel] = useState<number>();
   useEffect(() => {
     (async () => {
-      console.log("inside async");
       await checkPeanutLevel(setPeanutLevel);
     })();
   });
@@ -64,7 +60,7 @@ export const PeanutButton = ({}) => {
           (async () => {
             setPeanutLevel(await checkPeanutLevel(setPeanutLevel));
           })();
-          console.log(peanutLevel);
+
           dispatch({
             type: "add",
             value: peanutLevel,
@@ -126,14 +122,18 @@ const UpgradePeanutButton = ({ setPeanutLevel, peanutLevel }) => {
         {[
           peanutLevel == 5
             ? "You have reached MAX level"
-            : "Upgrade peanut level to " +
+            : (PeanutUpgradePrice.get(peanutLevel) > cookieCount
+              ? "You need " +
+                (PeanutUpgradePrice.get(peanutLevel) - cookieCount) +
+                " more cookies "
+              : "Upgrade peanut level to " +
               (peanutLevel + 1) +
               " for " +
               PeanutUpgradePrice.get(peanutLevel) +
-              " cookies",
+              " cookies")
         ]}
       </Text>
-      {/* <Text style={styles.cacaoTreeUpgradeText} onPress={() => resetPeanutLevel(setPeanutLevel)}>Test Reset</Text> */}
+      <Text style={styles.cacaoTreeUpgradeText} onPress={() => {resetPeanutLevel()}}>Test Reset</Text>
     </View>
   );
 };

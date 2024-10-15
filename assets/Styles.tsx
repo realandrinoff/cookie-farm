@@ -225,6 +225,8 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     width: 200,
     height: 200,
+    marginTop: 50,
+    marginBottom: 50,
   },
   shopOfferText: {
     fontFamily: "papyrus",
@@ -286,7 +288,6 @@ export const styles = StyleSheet.create({
     textAlign: "center",
   },
   exchangeContainerText: {
-    marginTop: 50,
     fontSize: 50,
     fontFamily: "papyrus",
     textAlign: "center",
