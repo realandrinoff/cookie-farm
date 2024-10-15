@@ -11,6 +11,12 @@ My first goal was just to learn something new, then I really liked the idea and 
 * A good game to play on a metro ride
 * A template and example of usage of React Native for people who look for a code to check out (if you have any questions regarding the code @andrinoff on all social media)
 
+## How to use
+
+You could fork the rep, on your machine run: 
+```npm install``` *(REQUIRED NODE.JS INSTALLED)*
+```npx install```
+```npx expo ```
 
 ## Made by andrinoff (Andrey Smirnoff) using:
 
