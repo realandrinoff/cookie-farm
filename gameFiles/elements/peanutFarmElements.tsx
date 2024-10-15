@@ -31,7 +31,7 @@ export const PeanutFarmLevel = ({}) => {
   if (Platform.OS != "web") {
     return (
       <View>
-        <Text style={styles.cacaoTreeUpgradeText}>peanut level: {peanutLevel}</Text>
+        <Text style={styles.cacaoTreeUpgradeText}>Peanut level: {peanutLevel}</Text>
         <UpgradePeanutButton
           setPeanutLevel={setPeanutLevel}
           peanutLevel={peanutLevel}
@@ -71,7 +71,7 @@ export const PeanutButton = ({}) => {
           });
         }}
       >
-        collect peanuts
+        Collect peanuts
       </Text>
     </View>
   );

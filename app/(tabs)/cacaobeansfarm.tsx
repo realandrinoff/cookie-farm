@@ -13,7 +13,7 @@ export default function cacaoScreen() {
         <Text style={styles.lockedText}>Cacao Farm unlocks on level 2...</Text>
       </View>
       <View style={levelCount >= 2 ? styles.bodyContainer : styles.HIDDEN}>
-          <Text style={styles.tabName}> Cacao Beans Farm </Text>
+          <Text style={styles.tabName}> Cacao Farm </Text>
           <CacaoFarmLevel />
         </View></>
     )

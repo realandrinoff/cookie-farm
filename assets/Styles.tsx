@@ -6,11 +6,12 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff",
     height: "100%",
     width: "100%",
+
   },
   mainLogo: {
-    marginTop: 180,
+    marginTop: 100,
     fontFamily: "papyrus",
-    fontSize: 70,
+    fontSize: 50,
     textAlign: "center"
   },
 
@@ -80,13 +81,13 @@ export const styles = StyleSheet.create({
     fontFamily: "papyrus",
     fontSize: 40,
     color: "#121212",
-    top: 350,
+    top: 450,
     display: "flex",
     flexDirection: "column",
     justifyContent: "flex-end",
   },
   collectButton: {
-    top: 350,
+    top: 450,
     overflow: "hidden",
     justifyContent: "center",
     textAlign: "center",
@@ -98,7 +99,7 @@ export const styles = StyleSheet.create({
   emptystyle: {},
   bakeButton: {
     overflow: "hidden",
-    top: 200,
+    top: 250,
     display: "flex",
     justifyContent: "center",
     textAlign: "center",
@@ -162,6 +163,7 @@ export const styles = StyleSheet.create({
   cacaoContainer: {
     display: "flex",
     flexDirection: "column",
+
     marginTop: 50,
     justifyContent: "center",
     alignItems: "center",
@@ -179,13 +181,13 @@ export const styles = StyleSheet.create({
     textAlign: "center",
   },
   allCountersParent: {
-    backgroundColor: "#D8D2C2",
-    height: 130,
+    backgroundColor: "#fff",
+    height: 120,
   },
   allCounters: {
     
     marginTop: 50,
-    height: 50,
+    height: 60,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
@@ -211,6 +213,7 @@ export const styles = StyleSheet.create({
   },
   requirementsIcons: {
     alignContent: "center",
+    marginBottom: 13,
     height: 25,
     width: 25,
   },
@@ -255,7 +258,7 @@ export const styles = StyleSheet.create({
     flexDirection: "row",
   },
   levelCounter: {
-    marginTop: 250,
+    marginTop: 300,
     fontFamily: "papyrus",
     textAlign: "center",
     fontSize: 100,
@@ -291,7 +294,7 @@ export const styles = StyleSheet.create({
   exchangeContainer: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "center",
   },
 
   resetButtonText: {
@@ -302,5 +305,20 @@ export const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 40,
     textAlignVertical: "center",
+  
   },
+  noWebSupport: {
+    top: "50%",
+    fontFamily: "papyrus",
+    fontSize: 100,
+    textAlign: "center",
+    color: "red",
+  },
+
+  credits: {
+    fontFamily: 'papyrus',
+    fontSize: 20,
+    textAlign: 'center',
+    top: "82%",
+  }
 });

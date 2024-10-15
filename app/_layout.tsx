@@ -108,10 +108,10 @@ export default function RootLayout() {
   }, []);
   if (isWeb) {
     return (
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
+      <>
+      <Text style={styles.noWebSupport}>NOT SUPPORTED ON WEB YET :( </Text>
+      <Text style={styles.credits}>@andrinoff 2024</Text>
+      </>
     );
   } else {
     return (
