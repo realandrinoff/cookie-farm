@@ -19,7 +19,9 @@ export default function shopScreen() {
       {/* tests */}
       {/* <TestElements
       /> */}
+      <Text style = {styles.exchangeContainerText}>Shop offers</Text>
       <View style={styles.shopOffersContainer}>
+        
         <ShopOfferWindow
           hasButtercup={hasButtercup()}
           typeOfCookie={"chocolatechip"} hasChocolateChip={hasChocolateChip()}        />

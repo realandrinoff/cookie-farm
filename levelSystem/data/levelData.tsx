@@ -4,12 +4,10 @@ export const CheckLevel = async() => {
     const levelString = await AsyncStorage.getItem("level")
     const levelNumber = JSON.parse(levelString) as number
     if (levelNumber === null) { 
-        console.log("no level")
         AsyncStorage.setItem("level", "1")
         return 1
         
     }
-    console.log(levelNumber)
     return levelNumber
 }
 export type levelType = {
