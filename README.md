@@ -14,8 +14,11 @@ My first goal was just to learn something new, then I really liked the idea and 
 ## How to use
 
 You could fork the rep, on your machine run: 
+###
 ```npm install``` *(REQUIRED NODE.JS INSTALLED)*
+###
 ```npx install```
+###
 ```npx expo ```
 
 ## Made by andrinoff (Andrey Smirnoff) using:
