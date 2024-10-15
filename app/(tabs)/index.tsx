@@ -4,12 +4,13 @@ import { LevelContext, LevelDispatchContext } from "../../levelSystem/data/conte
 import { useContext, useEffect } from "react";
 import { CookiesBakedContext } from "../../levelSystem/data/context/cookiesBakedContext";
 import { LevelMap } from "../../levelSystem/maps/levelMap";
-
+import { ThemeContext } from "../context/themeContext";
 
 export default function homeScreen(){
     const levelCount = useContext(LevelContext);
     const dispatchLevel = useContext(LevelDispatchContext);
     const cookiesBakedCount = useContext(CookiesBakedContext);
+    const currentTheme = useContext(ThemeContext);
     if (cookiesBakedCount >= LevelMap.get(levelCount)) {
         dispatchLevel({
             type: "add",
@@ -17,7 +18,7 @@ export default function homeScreen(){
         })
     }
     return (
-        <View style = {styles.bodyContainer}>
+        <View style = {currentTheme == 0 ? styles.bodyContainerLight : styles.bodyContainerDark}>
         <Text style = {styles.mainLogo}>COOKIE FARM</Text>
         <Text style={styles.levelCounter}>Level: {levelCount}</Text>
         <Text style={styles.toNextLevelCounter}>To next level: {cookiesBakedCount} / {LevelMap.get(levelCount)}</Text>

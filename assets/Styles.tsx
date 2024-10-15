@@ -2,11 +2,21 @@ import { StyleSheet } from "react-native";
 import { ShopOfferWindow } from "../shop/Elements/shopOffers";
 
 export const styles = StyleSheet.create({
-  bodyContainer: {
+  bodyContainerLight: {
     backgroundColor: "#fff",
     height: "100%",
     width: "100%",
-
+  },
+  bodyContainerDark: {
+    backgroundColor: "#121212",
+    height: "100%",
+    width: "100%",
+  },
+  textLight: {
+    color: "#121212",
+  },
+  textDark: {
+    color: "#fff",
   },
   mainLogo: {
     marginTop: 100,

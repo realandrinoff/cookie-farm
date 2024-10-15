@@ -13,6 +13,8 @@ import {
 } from "../../gameFiles/elements/bakingElements";
 import { CookieOptions } from "../../gameFiles/elements/options";
 import { checkTypesButtercup, checkTypesChocolateChip } from "../../shop/data/shopData";
+import { ThemeContext } from "../context/themeContext";
+
 
 export default function bakeryScreen() {
   const [typeOfCookie, setTypeOfCookie] = useState<string>("regular");
@@ -20,12 +22,13 @@ export default function bakeryScreen() {
   const dispatch = useContext(CookieDispatchContext);
   const cookieCount = useContext(CookieContext);
   var [hideOptions, setHideOptions] = useState(false);
-  
+  const currentTheme = useContext(ThemeContext);
+
 
 
   return (
     <>
-      <View style={styles.bodyContainer}>
+      <View style={currentTheme == 0 ? styles.bodyContainerLight : styles.bodyContainerDark}>
         <Text style={styles.tabName}>Bakery Screen</Text>
         <View>
           <CookieOptions

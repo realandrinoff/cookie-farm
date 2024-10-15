@@ -17,6 +17,10 @@ import { CheckLevel, levelReducer } from "../levelSystem/data/levelData";
 import { LevelContext, LevelDispatchContext } from "../levelSystem/data/context/levelContext";
 import { CheckCookiesBaked, cookiesBakedReducer } from "../levelSystem/data/cookiesBakedData";
 import { CookiesBakedContext, CookiesBakedDispatchContext } from "../levelSystem/data/context/cookiesBakedContext";
+import { getTheme } from "../settingsMenu/data/themeData";
+import { themeReducer } from "../dataManagement/themeData";
+
+import { ThemeDispatchContext, ThemeContext } from "./context/themeContext";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -62,6 +66,7 @@ export default function RootLayout() {
   const [peanutCount, dispatchPeanut] = useReducer(peanutReducer, 0);
   const [levelCount, dispatchLevel] = useReducer(levelReducer, 1);
   const [cookiesBakedCount, dispatchCookiesBaked] = useReducer(cookiesBakedReducer, 0)
+  const [currentTheme, dispatchTheme] = useReducer(themeReducer, 0)
   useEffect(() => {
     (async () => {
       dispatchLevel({
@@ -71,6 +76,13 @@ export default function RootLayout() {
       );
     })();
   }, []);
+  // useEffect(()=> {
+  //   (async () => {
+  //     dispatchTheme({
+  //       type: "initialize"
+  //     })
+  //   })()
+  // })
   useEffect(() => {
     (async () => {
       dispatchCookiesBaked({
@@ -106,6 +118,8 @@ export default function RootLayout() {
       });
     })();
   }, []);
+
+
   if (isWeb) {
     return (
       <>
@@ -116,6 +130,8 @@ export default function RootLayout() {
   } else {
     return (
       <>
+      <ThemeDispatchContext.Provider value={dispatchTheme}>
+      <ThemeContext.Provider value={currentTheme}>
       <View style = {styles.allCountersParent}> 
         <View style={styles.allCounters}>
         <CookieView isWeb={isWeb} cookieCount={cookieCount} />
@@ -123,6 +139,7 @@ export default function RootLayout() {
         <CacaoCounter cacaoAmount={cacaoCount}></CacaoCounter>
         </View>
         </View>
+        
         <CookiesBakedContext.Provider value={cookiesBakedCount}>
         <CookiesBakedDispatchContext.Provider value={dispatchCookiesBaked}>
         <LevelContext.Provider value={levelCount}>
@@ -150,6 +167,8 @@ export default function RootLayout() {
         </LevelContext.Provider>
         </CookiesBakedDispatchContext.Provider>
         </CookiesBakedContext.Provider>
+        </ThemeContext.Provider>
+        </ThemeDispatchContext.Provider>
       </>
     );
   }
