@@ -6,6 +6,8 @@ export const styles = StyleSheet.create({
     backgroundColor: "#fff",
     height: "100%",
     width: "100%",
+
+    display: "flex",
   },
   bodyContainerDark: {
     backgroundColor: "#121212",
@@ -22,7 +24,7 @@ export const styles = StyleSheet.create({
     marginTop: 100,
     fontFamily: "papyrus",
     fontSize: 50,
-    textAlign: "center"
+    textAlign: "center",
   },
 
   tabName: {
@@ -195,7 +197,6 @@ export const styles = StyleSheet.create({
     height: 120,
   },
   allCounters: {
-    
     marginTop: 50,
     height: 60,
     display: "flex",
@@ -308,15 +309,23 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
+  settingsMenu: {
+    display: "flex",
+    flexDirection: "column-reverse",
+    height: "100%",
+    width: "100%",
+  },
+  
   resetButtonText: {
     fontFamily: "papyrus",
     borderColor: "red",
     borderWidth: 3,
     borderRadius: 20,
     textAlign: "center",
-    fontSize: 40,
-    textAlignVertical: "center",
-  
+    fontSize: 20,
+    // textAlignVertical: "bottom",
+    alignSelf: "flex-end"
+
   },
   noWebSupport: {
     top: "50%",
@@ -327,9 +336,9 @@ export const styles = StyleSheet.create({
   },
 
   credits: {
-    fontFamily: 'papyrus',
+    fontFamily: "papyrus",
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: "center",
     top: "82%",
-  }
+  },
 });

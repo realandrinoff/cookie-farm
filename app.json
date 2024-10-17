@@ -13,9 +13,11 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
+      "requireFullScreen": true,
       "supportsTablet": true
     },
     "android": {
+      "screenOrientation": "portrait",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/cookie-regular.png",
         "backgroundColor": "#ffffff"
@@ -26,7 +28,13 @@
       "output": "static"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      [
+        "expo-screen-orientation",
+        {
+          "initialOrientation": "portrait"
+        }
+      ]
 
     ],
     "experiments": {
