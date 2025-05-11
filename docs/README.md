@@ -4,7 +4,7 @@
 
 <br />
 
-[![Status](https://img.shields.io/badge/status-under_maintenance-white)]()
+[![Status](https://img.shields.io/badge/status-archived-yellow)]()
 [![Version](https://img.shields.io/badge/version-1.0-green)](https://github.com/realandrinoff/cookie-farm/releases)
 
 
